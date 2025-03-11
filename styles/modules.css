@@ -3,27 +3,32 @@
 /* 食谱模块样式 */
 .scenario-buttons {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  margin: 2rem 0;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin: 2.5rem 0;
 }
 
 /* 场景按钮基础样式 */
 .scenario-btn, .method-btn {
-  padding: 1.5rem;
+  padding: 2rem;
   border: 2px solid;
-  border-radius: 12px;
+  border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 
 /* BMI结果容器 */
 .bmi-result {
   background: #fff;
+<<<<<<< HEAD
+  border-radius: 15px;
+  padding: 25px;
+=======
   border-radius: 12px;
   padding: 20px;
+>>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: relative;
   overflow: visible;
@@ -33,10 +38,17 @@
 .bmi-image {
   max-width: 100%;
   height: auto;
+<<<<<<< HEAD
+  max-height: 250px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin: 15px 0;
+=======
   max-height: 200px;
   object-fit: contain;
   border-radius: 8px;
   margin: 10px 0;
+>>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 }
 
 .bmi-value {
@@ -57,7 +69,8 @@
 /* 正常场景 - 黄色系 */
 .scenario-btn[data-scenario="正常"] {
   background: #ffe066;
-  border-color: #f59f00;
+  border-color: #FFA726;
+  border-width: 3px;
   color: #2b8a3e;
 }
 
@@ -71,7 +84,7 @@
 /* 悬停效果 */
 .scenario-btn:hover, .method-btn:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
   filter: brightness(0.95);
 }
 
@@ -96,11 +109,11 @@
 
 .recipe-card {
   background: rgb(255, 255, 255);
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-radius: 15px;
+  padding: 2rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 280px;
+  min-height: 320px;
   display: flex;
   flex-direction: column;
 }
@@ -125,6 +138,21 @@
   cursor: pointer;
   padding: 0.5rem;
   margin-top: 1rem;
+}
+
+.favorite-btn {
+  transition: color 0.3s ease;
+}
+
+.favorite-btn.favorited {
+  color: #ff4757;
+  animation: heartBeat 0.5s ease;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .back-btn {
@@ -235,9 +263,11 @@
 /* 健康计划模块 */
 .health-plan-card {
   background: #fff;
-  padding: 1.5rem;
+  padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 320px;
+  margin: 20px;
 }
 
 .plan-progress {
@@ -301,6 +331,13 @@
   align-items: center;
   margin-bottom: 1.5rem;
 }
+<<<<<<< HEAD
+.stress-header h3 {
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+=======
+>>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 
 .real-time-suggestions {
   padding: 1rem;
@@ -490,9 +527,10 @@
 .module-title {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   border-bottom: 2px solid #3498db;
   padding-bottom: 10px;
+  font-size: 1.8rem;
 }
 
 .symptom-selector {
