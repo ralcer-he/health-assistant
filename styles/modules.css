@@ -22,13 +22,8 @@
 /* BMI结果容器 */
 .bmi-result {
   background: #fff;
-<<<<<<< HEAD
   border-radius: 15px;
   padding: 25px;
-=======
-  border-radius: 12px;
-  padding: 20px;
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: relative;
   overflow: visible;
@@ -38,17 +33,10 @@
 .bmi-image {
   max-width: 100%;
   height: auto;
-<<<<<<< HEAD
   max-height: 250px;
   object-fit: contain;
   border-radius: 10px;
   margin: 15px 0;
-=======
-  max-height: 200px;
-  object-fit: contain;
-  border-radius: 8px;
-  margin: 10px 0;
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 }
 
 .bmi-value {
@@ -331,13 +319,10 @@
   align-items: center;
   margin-bottom: 1.5rem;
 }
-<<<<<<< HEAD
 .stress-header h3 {
   font-size: 1.4rem;
   margin-bottom: 15px;
 }
-=======
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 
 .real-time-suggestions {
   padding: 1rem;

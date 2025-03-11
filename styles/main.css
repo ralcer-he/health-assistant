@@ -55,33 +55,19 @@ body {
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(8px);
   border-radius: var(--border-radius);
-<<<<<<< HEAD
   padding: calc(var(--container-padding) * 1.2);
   margin: 2.5rem auto 0;
   box-shadow: var(--shadow-base);
   width: calc(100% - 3rem);
   max-width: 1300px;
-=======
-  padding: var(--container-padding);
-  margin: 2rem auto 0;
-  box-shadow: var(--shadow-base);
-  width: calc(100% - 4rem);
-  max-width: 1200px;
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 }
 
 /* 图片通用样式 */
 .recipe-image {
   width: 100%;
-<<<<<<< HEAD
   max-height: 250px;
   margin: 1.2rem 0;
   border-radius: 10px;
-=======
-  max-height: 200px;
-  margin: 1rem 0;
-  border-radius: 8px;
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
   overflow: hidden;
   display: none;
   
@@ -98,7 +84,6 @@ body {
 }
 
 .bmi-image {
-<<<<<<< HEAD
   width: 1350px;
   height: 1350px;
   margin-left: 225px;
@@ -107,16 +92,6 @@ body {
 }
 
 /* 功能按钮容器 */
-=======
-  width: 120px;
-  height: 120px;
-  margin-left: 20px;
-  border-radius: 8px;
-  box-shadow: var(--shadow-medium);
-}
-
-/* 功能按钮组 */
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 .feature-buttons {
   display: flex;
   gap: 5rem; /* 优化间隙为更合理的值 */
@@ -130,27 +105,17 @@ body {
   font-size: 14px;
 }
 
-<<<<<<< HEAD
 /* 功能按钮容器 */
 .feature-buttons .btn {
   padding: 1.5rem 2.5rem;
   font-size: 1.8rem;
   min-width: 280px;
   flex: 1 1 auto;
-=======
-.btn {
-  transition: transform var(--transition-base);
-  
-  &:active {
-    transform: scale(0.98);
-  }
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
 }
 
 /* 响应式设计 */
 @media (max-width: 768px) {
   :root {
-<<<<<<< HEAD
     font-size: 12px;
   }
   
@@ -3886,43 +3851,3 @@ body {
   .main-header {
     padding: 3rem;
   }
-=======
-    --content-padding: 1rem;
-    --container-padding: 1rem;
-  }
-
-  html {
-    font-size: 14px;
-  }
-
-  .content-container {
-    width: calc(100% - 2rem);
-    margin-top: 1rem;
-  }
-
-  .logo {
-    width: 70%;
-    max-width: 280px;
-  }
-
-  .btn {
-    width: 100%;
-    margin: 0.5rem 0;
-  }
-
-  .bmi-image {
-    margin-left: 0;
-    margin-top: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .main-header {
-    padding: 1rem;
-  }
-  
-  .content-container {
-    border-radius: 8px;
-  }
-}
->>>>>>> f28dcee225fd37a0bdd470dc40208f9521812952
