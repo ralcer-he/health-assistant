@@ -205,6 +205,7 @@ class HealthModule {
           <span>BMI</span>
           <strong>${bmi}</strong>
           <span class="category">${category}</span>
+          <img src="/health-assistant/images/${category}.png" class="bmi-image" alt="BMI状态示意图">
         </div>
         
         <div class="progress-container">
@@ -401,7 +402,6 @@ class HealthModule {
     localStorage.setItem('stressData', JSON.stringify(result));
     this.stressData = result;
     
-    // 强制完整重绘仪表盘
     this.renderHealthDashboard(this.currentBMI);
   }
 

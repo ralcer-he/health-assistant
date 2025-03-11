@@ -14,7 +14,6 @@ export default {
             this.data = await fetchLocalData('/health-assistant/data/recipes.json');
             this.renderScenarioSelection();
             this.bindGlobalEvents();
-            this.initImageFullscreenHandlers(); // 新增初始化
         } catch (error) {
             this.showError('食谱数据加载失败，请刷新重试');
         }
@@ -24,39 +23,6 @@ export default {
         this.unbindGlobalEvents();
         const container = document.getElementById('contentContainer');
         if (container) container.innerHTML = '';
-    },
-
-    // 新增全屏处理方法
-    initImageFullscreenHandlers() {
-        document.addEventListener('click', (e) => {
-            const img = e.target.closest('.recipe-image img');
-            const fullscreenContainer = e.target.closest('.recipe-image.fullscreen');
-            
-            if (img) {
-                this.toggleFullscreen(img.parentElement);
-            } else if (fullscreenContainer) {
-                this.toggleFullscreen(fullscreenContainer);
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.recipe-image.fullscreen').forEach(el => {
-                    el.classList.remove('fullscreen');
-                });
-            }
-        });
-    },
-
-    toggleFullscreen(container) {
-        const isFullscreen = container.classList.contains('fullscreen');
-        if (!isFullscreen) {
-            container.classList.add('fullscreen');
-            document.documentElement.style.overflow = 'hidden';
-        } else {
-            container.classList.remove('fullscreen');
-            document.documentElement.style.overflow = '';
-        }
     },
 
     renderLoading() {
@@ -202,7 +168,7 @@ export default {
                                 </div>
                                 <div class="details hidden" id="details_${index}">
                                     <div class="recipe-image">
-                                        ${recipe.image ? `<img src="images/${recipe.image}" alt="${recipe.name}" loading="lazy">` : ''}
+                                        ${recipe.image ? `<img src="images/${recipe.image}" alt="${recipe.name}">` : ''}
                                     </div>
                                     <h5>完整食材清单：</h5>
                                     <ul>${recipe.ingredients.map(i => `<li>${i}</li>`).join('')}</ul>
@@ -224,26 +190,7 @@ export default {
         `;
 
         const recipeContent = document.getElementById('recipeContent');
-        if (recipeContent) {
-            recipeContent.innerHTML = content;
-            this.initImagePreloader(); // 新增图片预加载
-        }
-    },
-
-    // 新增图片预加载方法
-    initImagePreloader() {
-        document.querySelectorAll('.recipe-image img').forEach(img => {
-            const tempImg = new Image();
-            tempImg.src = img.src;
-            tempImg.onload = () => {
-                img.style.opacity = '1';
-                img.parentElement.classList.remove('loading');
-            };
-            tempImg.onerror = () => {
-                img.parentElement.style.display = 'none';
-            };
-            img.parentElement.classList.add('loading');
-        });
+        if (recipeContent) recipeContent.innerHTML = content;
     },
 
     createPagination(totalItems) {
@@ -264,29 +211,30 @@ export default {
     },
 
     toggleRecipeDetails(recipeId) {
-        const details = document.getElementById(`details_${recipeId.split('_')[1]}`);
-        const imageContainer = details?.querySelector('.recipe-image');
-        if (!details) return;
-
-        const isOpening = details.classList.contains('hidden');
-        details.classList.toggle('hidden');
-        
-        if (isOpening) {
-            details.style.maxHeight = '0';
-            setTimeout(() => {
-                details.style.maxHeight = `${details.scrollHeight}px`;
-                if (imageContainer) {
-                    imageContainer.style.display = 'block';
-                }
-            }, 10);
-        } else {
-            details.style.maxHeight = '0';
-            if (imageContainer) {
-                imageContainer.style.display = 'none';
-                imageContainer.classList.remove('fullscreen');
-            }
-        }
-    },
+      const details = document.getElementById(`details_${recipeId.split('_')[1]}`);
+      const imageContainer = details.querySelector('.recipe-image');
+      if (!details) return;
+  
+      const isOpening = details.classList.contains('hidden');
+      details.classList.toggle('hidden');
+      
+      if (isOpening) {
+          details.style.maxHeight = '0';
+          setTimeout(() => {
+              details.style.maxHeight = `${details.scrollHeight}px`;
+          }, 10);
+          // 显示图片
+          if (imageContainer) {
+              imageContainer.style.display = 'inline';
+          }
+      } else {
+          details.style.maxHeight = '0';
+          // 隐藏图片
+          if (imageContainer) {
+              imageContainer.style.display = 'none';
+          }
+      }
+  },
 
     handleBackNavigation() {
         if (this.currentState.method) {

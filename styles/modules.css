@@ -19,6 +19,34 @@
   font-weight: 500;
 }
 
+/* BMI结果容器 */
+.bmi-result {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: visible;
+}
+
+/* BMI图片样式 */
+.bmi-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.bmi-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  overflow: visible;
+}
+
 /* 应急场景 - 红色系 */
 .scenario-btn[data-scenario="应急"] {
   background: #ff6b6b;
@@ -258,12 +286,77 @@
   border-left: 3px solid #69db7c;
   padding-left: 1rem;
 }
-/* 压力评估模块 */
+/* 智能压力评估模块 */
 .stress-card {
   background: #fff;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.stress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.real-time-suggestions {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 1rem 0;
+  color: #2b8a3e;
+  transition: all 0.3s ease;
+}
+
+.chart-container {
+  height: 300px;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.breathing-guide {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.breathing-phase {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+  margin: 1rem 0;
+}
+
+.breathing-phase .circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: #4dabf7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  animation: breath 8s infinite;
+}
+
+@keyframes breath {
+  0% { transform: scale(0.9); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(0.9); }
+  75% { transform: scale(0.8); }
+  100% { transform: scale(0.9); }
+}
+
+.counter {
+  text-align: center;
+  color: #868e96;
+  margin-top: 1rem;
 }
 /* 测评选项间距 */
 .question-group {
@@ -660,7 +753,7 @@
 }
 
 .btn-view-details {
-  display: block;
+  display: inline;
   width: 100%;
   padding: 10px;
   background: #3498db;
@@ -954,7 +1047,7 @@
 
 /* 强制显示结果区域 */
 .result-section.hidden {
-  display: block !important; 
+  display: inline !important; 
   opacity: 0;
   transition: opacity 0.3s;
 }
