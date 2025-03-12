@@ -3,27 +3,27 @@
 /* 食谱模块样式 */
 .scenario-buttons {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  margin: 2.5rem 0;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: 2rem 0;
 }
 
 /* 场景按钮基础样式 */
 .scenario-btn, .method-btn {
-  padding: 2rem;
+  padding: 1.5rem;
   border: 2px solid;
-  border-radius: 15px;
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 
 /* BMI结果容器 */
 .bmi-result {
   background: #fff;
-  border-radius: 15px;
-  padding: 25px;
+  border-radius: 12px;
+  padding: 20px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   position: relative;
   overflow: visible;
@@ -33,10 +33,10 @@
 .bmi-image {
   max-width: 100%;
   height: auto;
-  max-height: 250px;
+  max-height: 200px;
   object-fit: contain;
-  border-radius: 10px;
-  margin: 15px 0;
+  border-radius: 8px;
+  margin: 10px 0;
 }
 
 .bmi-value {
@@ -57,8 +57,7 @@
 /* 正常场景 - 黄色系 */
 .scenario-btn[data-scenario="正常"] {
   background: #ffe066;
-  border-color: #FFA726;
-  border-width: 3px;
+  border-color: #f59f00;
   color: #2b8a3e;
 }
 
@@ -72,7 +71,7 @@
 /* 悬停效果 */
 .scenario-btn:hover, .method-btn:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   filter: brightness(0.95);
 }
 
@@ -97,11 +96,11 @@
 
 .recipe-card {
   background: rgb(255, 255, 255);
-  border-radius: 15px;
-  padding: 2rem;
+  border-radius: 12px;
+  padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  min-height: 320px;
+  min-height: 280px;
   display: flex;
   flex-direction: column;
 }
@@ -126,21 +125,6 @@
   cursor: pointer;
   padding: 0.5rem;
   margin-top: 1rem;
-}
-
-.favorite-btn {
-  transition: color 0.3s ease;
-}
-
-.favorite-btn.favorited {
-  color: #ff4757;
-  animation: heartBeat 0.5s ease;
-}
-
-@keyframes heartBeat {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
 }
 
 .back-btn {
@@ -197,7 +181,17 @@
   to { transform: rotate(360deg); }
 } */
 
-/* ------------------ 健康管理模块 ------------------ */
+/* ------------------ 健康管理模块 ------------------ 
+模块功能：BMI计算、健康计划跟踪、进度可视化
+关键样式说明：
+- .bmi-form 表单容器圆角阴影设计
+- .bmi-badge 状态徽章颜色编码系统
+- .health-dashboard 自适应网格布局
+- .plan-progress 进度条动画过渡效果
+响应式设计：
+- 移动端堆叠排列健康数据卡片
+- 小屏幕隐藏次要可视化元素
+*/
 .bmi-form {
   background: #fff;
   border-radius: 12px;
@@ -251,11 +245,9 @@
 /* 健康计划模块 */
 .health-plan-card {
   background: #fff;
-  padding: 25px;
+  padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  width: 320px;
-  margin: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .plan-progress {
@@ -304,7 +296,17 @@
   border-left: 3px solid #69db7c;
   padding-left: 1rem;
 }
-/* 智能压力评估模块 */
+/* ------------------ 压力评估模块 ------------------ 
+模块功能：压力测评问卷样式、实时建议、呼吸动画
+关键样式说明：
+- .stress-card 卡片式问卷容器
+- .breathing-phase 呼吸动画关键帧
+- .real-time-suggestions 动态建议框过渡效果
+- .options 测评选项交互状态设计
+响应式设计：
+- 移动端测评选项垂直排列
+- 小屏幕呼吸动画尺寸适配
+*/
 .stress-card {
   background: #fff;
   padding: 1.5rem;
@@ -318,10 +320,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-}
-.stress-header h3 {
-  font-size: 1.4rem;
-  margin-bottom: 15px;
 }
 
 .real-time-suggestions {
@@ -501,7 +499,18 @@
 
 
 
-/* ------------------ 疾病诊断模块 ------------------ */
+/* ------------------ 疾病诊断模块 ------------------ 
+模块功能：症状选择器、诊断结果可视化、病史记录
+关键样式说明：
+- .symptom-btn 症状标签的选中状态设计
+- .confidence-overlay 置信度渐变蒙版
+- .diagnosis-card 结果卡片层级布局
+- .symptom-details-grid 症状明细网格布局
+响应式设计：
+- 移动端症状选择器垂直排列
+- 小屏幕隐藏次要诊断细节
+- 平板设备网格布局自适应
+*/
 .diagnosis-module {
   padding: 25px;
   max-width: 1000px;
@@ -512,10 +521,9 @@
 .module-title {
   text-align: center;
   color: #2c3e50;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   border-bottom: 2px solid #3498db;
   padding-bottom: 10px;
-  font-size: 1.8rem;
 }
 
 .symptom-selector {
