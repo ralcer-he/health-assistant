@@ -364,6 +364,20 @@
   font-weight: bold;
   animation: breath 8s infinite;
 }
+.btn-evaluate {
+  background: #b5f8b7 !important;
+  border-color: #b5f8b7  !important;
+}
+
+.btn-generate {
+  background: #afd7ff !important;
+  border-color: #afd7ff !important;
+}
+
+.btn-assessment {
+  background: #81eae8 !important;
+  border-color: #81eae8 !important;
+}
 
 @keyframes breath {
   0% { transform: scale(0.9); }

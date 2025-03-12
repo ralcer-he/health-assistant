@@ -58,7 +58,7 @@ class HealthModule {
             <input type="number" id="weight" class="form-input" min="30" max="300" required>
           </div>
           <div class="action-buttons">
-            <button type="submit" class="btn btn-primary">📊 立即评估</button>
+            <button type="submit" class="btn btn-evaluate">📊 立即评估</button>
             <button type="button" id="resetBtn" class="btn btn-secondary">🔄 重置数据</button>
           </div>
         </form>
@@ -68,7 +68,13 @@ class HealthModule {
   }
 
   bindEvents() {
-    this.handleSubmit = (e) => this.onSubmit(e);
+    this.handleEvaluate = (e) => this.onSubmit(e);
+    this.handleGenerate = () => this.generateHealthPlan();
+    this.handleStress = (e) => this.handleStressSubmit(e);
+
+    document.getElementById('bmiForm')?.addEventListener('submit', this.handleEvaluate);
+    document.getElementById('planForm')?.addEventListener('submit', this.handleGenerate);
+    document.getElementById('stressForm')?.addEventListener('submit', this.handleStress);
     this.handleReset = () => this.onReset();
     this.handleInput = () => this.onInput();
 
@@ -102,6 +108,9 @@ class HealthModule {
   }
 
   unbindEvents() {
+    document.getElementById('bmiForm')?.removeEventListener('submit', this.handleEvaluate);
+    document.getElementById('planForm')?.removeEventListener('submit', this.handleGenerate);
+    document.getElementById('stressForm')?.removeEventListener('submit', this.handleStress);
     document.getElementById('bmiForm')?.removeEventListener('submit', this.handleSubmit);
     document.getElementById('resetBtn')?.removeEventListener('click', this.handleReset);
     document.querySelectorAll('.form-input').forEach(input => {
@@ -236,7 +245,7 @@ class HealthModule {
           <label>每日运动目标（分钟）</label>
           <input type="number" min="15" max="180" value="30" id="exerciseGoal">
         </div>
-        <button type="submit" class="btn btn-primary">生成计划</button>
+        <button type="submit" class="btn btn-generate">生成计划</button>
       </form>
     `;
   }
@@ -281,7 +290,7 @@ class HealthModule {
               </div>
             </div>
           `).join('')}
-          <button type="submit" class="btn btn-primary">立即评估</button>
+          <button type="submit" class="btn btn-assessment">测评一下</button>
         </form>
         ${this.stressData.score !== undefined ? this.showStressResult() : ''}
       </div>
@@ -320,7 +329,7 @@ class HealthModule {
       this.healthPlan = {
         dailyTasks: allTasks
           .sort(() => Math.random() - 0.5)
-          .slice(0, 5)
+          .slice(0, 8)
           .map((task, index) => ({
             ...task,
             id: `task_${Date.now()}_${index}`,
