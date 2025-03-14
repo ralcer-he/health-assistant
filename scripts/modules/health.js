@@ -297,7 +297,9 @@ export class HealthModule {
           this.sdsTest = new SDSTest(questions, this);
           this.sdsTest.renderQuestion();
         } else if (testType === 'SAS') {
+          // 修复点：添加SAS测试初始化逻辑
           this.sasTest = new SASTest(questions, this);
+          this.sasTest.renderQuestion(); // 新增渲染调用
         }
       } catch (error) {
         this.showError('无法加载测试题目');
