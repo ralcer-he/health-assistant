@@ -318,6 +318,11 @@ export class HealthModule {
         this.toggleTask(taskId);
       });
     });
+
+    // 修正选择器为 .btn-regenerate
+    document.querySelector('.btn-regenerate')?.addEventListener('click', () => {
+      this.generateHealthPlan();
+    });
   }
 
   createBMICard(bmi) {
@@ -350,7 +355,10 @@ export class HealthModule {
     return `
       <div class="health-plan-card">
         <h3>🏃 本周健康计划</h3>
-        ${this.healthPlan.dailyTasks?.length ? this.showPlanProgress() : this.renderPlanForm()}
+        ${this.healthPlan.dailyTasks?.length ? 
+          `${this.showPlanProgress()}
+           <button class="btn btn-regenerate">🔄 重新生成计划</button>` 
+          : this.renderPlanForm()}
       </div>
     `;
   }
