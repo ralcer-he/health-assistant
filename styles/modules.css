@@ -289,81 +289,6 @@
   font-size: 1.2em;
 }
 
-
-
-/* 新增的饮食计划样式 */
-.nutrition-plan {
-  border-left: 3px solid #69db7c;
-  padding-left: 1rem;
-}
-/* ------------------ 压力评估模块 ------------------ 
-模块功能：压力测评问卷样式、实时建议、呼吸动画
-关键样式说明：
-- .stress-card 卡片式问卷容器
-- .breathing-phase 呼吸动画关键帧
-- .real-time-suggestions 动态建议框过渡效果
-- .options 测评选项交互状态设计
-响应式设计：
-- 移动端测评选项垂直排列
-- 小屏幕呼吸动画尺寸适配
-*/
-.stress-card {
-  background: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  position: relative;
-}
-
-.stress-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
-}
-
-.real-time-suggestions {
-  padding: 1rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-  margin: 1rem 0;
-  color: #2b8a3e;
-  transition: all 0.3s ease;
-}
-
-.chart-container {
-  height: 300px;
-  margin: 2rem 0;
-  position: relative;
-}
-
-.breathing-guide {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.breathing-phase {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 120px;
-  margin: 1rem 0;
-}
-
-.breathing-phase .circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background: #4dabf7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-  animation: breath 8s infinite;
-}
 .btn-evaluate {
   background: #b5f8b7 !important;
   border-color: #b5f8b7  !important;
@@ -373,144 +298,14 @@
   background: #afd7ff !important;
   border-color: #afd7ff !important;
 }
-
-.btn-assessment {
-  background: #81eae8 !important;
-  border-color: #81eae8 !important;
+/* 新增的饮食计划样式 */
+.nutrition-plan {
+  border-left: 3px solid #69db7c;
+  padding-left: 1rem;
 }
+/* ------------------ 心理测评模块 ------------------ 
 
-@keyframes breath {
-  0% { transform: scale(0.9); }
-  25% { transform: scale(1.2); }
-  50% { transform: scale(0.9); }
-  75% { transform: scale(0.8); }
-  100% { transform: scale(0.9); }
-}
-
-.counter {
-  text-align: center;
-  color: #868e96;
-  margin-top: 1rem;
-}
-/* 测评选项间距 */
-.question-group {
-  margin-bottom: 1.5rem;
-}
-.question-group {
-  margin: 2rem 0;
-}
-
-.question-group p {
-  color: #495057;
-  margin-bottom: 1rem;
-}
-
-.options {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.options label {
-  background: #f8f9fa;
-  padding: 10px 20px;
-  border-radius: 25px;
-  border: 1px solid #dee2e6;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.options label:hover {
-  background: #e9ecef;
-  transform: translateY(-2px);
-}
-
-.stress-result {
-  margin-top: 2rem;
-  padding: 1.5rem;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.stress-result h4 {
-  color: #2b8a3e;
-  margin-bottom: 1rem;
-}
-/* 压力评估结果 */
-.stress-result {
-  background: #f8f9fa;
-  border-left: 4px solid #4dabf7;
-  padding: 1.5rem;
-  margin-top: 1rem;
-  border-radius: 8px;
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateX(20px); }
-  to { opacity: 1; transform: translateX(0); }
-}
-
-.stress-score {
-  font-size: 1.25rem;
-  color: #2b8a3e;
-  margin-bottom: 0.5rem;
-}
-
-.stress-suggestion {
-  color: #495057;
-  line-height: 1.6;
-}
-
-
-
-/* 响应式设计 */
-@media (max-width: 768px) {
-  .health-dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .options {
-    flex-direction: column;
-  }
-
-  .options label {
-    width: 100%;
-    text-align: center;
-  }
-}
-
-/* 错误提示动画 */
-@keyframes slideIn {
-  from {
-    transform: translateY(-20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.error-message {
-  background: #ffe3e3;
-  color: #c92a2a;
-  padding: 1rem;
-  border-radius: 8px;
-  animation: slideIn 0.3s ease-out;
-  margin: 1rem 0;
-}
-
-.progress-bar {
-  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.daily-tasks li {
-  transition: all 0.3s ease;
-}
-
-
-
+/* 保持原有样式不变 */
 
 
 /* ------------------ 疾病诊断模块 ------------------ 
@@ -1108,4 +903,354 @@
   border: 2px solid #dee2e6;
   border-radius: 8px;
   margin-top: 8px;
+}
+
+/* 在健康管理模块样式后添加以下内容 */
+/* ------------------ 心理测评模块 ------------------ */
+.psycho-test-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.test-buttons {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.test-btn {
+  padding: 1rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.test-btn .emoji {
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+/* 抑郁测试按钮样式 */
+.test-btn.depression {
+  background: #ffebee;
+  color: #c62828;
+}
+.test-btn.depression:hover {
+  background: #ffcdd2;
+}
+
+/* 焦虑测试按钮样式 */
+.test-btn.anxiety {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+.test-btn.anxiety:hover {
+  background: #ffe0b2;
+}
+
+/* 情绪测试按钮样式 */
+.test-btn.ees {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.test-btn.ees:hover {
+  background: #c8e6c9;
+}
+
+@media (max-width: 768px) {
+  .option-btn {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+  }
+  
+  .test-result .score {
+    font-size: 2rem;
+  }
+}
+
+/* 测试结果页样式 */
+.test-result {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.test-result .score {
+  font-size: 2.5rem;
+  color: #2d3439;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.test-result .conclusion {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 2rem 0;
+  font-size: 1.4rem;
+}
+/* 新增测试进度条样式 */
+.sds-test-container .progress-bar {
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.sds-test-container .progress {
+  height: 100%;
+  background: #4a90e2;
+  transition: width 0.3s ease;
+}
+
+/* 题目容器样式 */
+.question-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin: 1rem 0;
+}
+
+.question-number {
+  color: #6c757d;
+  margin-bottom: 1rem;
+  font-size: 0.9em;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #2d3439;
+  line-height: 1.5;
+}
+
+/* 选项按钮样式 */
+.options {
+  display: grid;
+  gap: 1rem;
+}
+
+.option-btn {
+  padding: 1rem;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.option-btn:hover {
+  border-color: #4a90e2;
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+
+/* 修改导航按钮样式 */
+.question-navigation {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-prev {
+  /* 保持原有样式 */
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 2px solid #dee2e6;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* 增加按钮间距 */
+.btn-prev:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* 新增评分标准样式 */
+.scoring-criteria {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.scoring-criteria li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.scoring-criteria li.active {
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+/* 专家建议区块 */
+.advice-section {
+  background: #fff3e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.advice-content p {
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  margin: 8px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+/* 补充EES进度条动画样式 */
+.ees-test-container .progress-bar {
+  background: #f0f4c3;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.ees-test-container .progress {
+  background: #8bc34a;
+  height: 100%;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* 新增EES结果样式 */
+.ees-result {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f1f4ff 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ees-result::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  background: rgba(74, 108, 247, 0.05);
+  border-radius: 50%;
+}
+
+.dimension-score {
+  background: white;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border-left: 4px solid #4a6cf7;
+  box-shadow: 0 3px 6px rgba(74, 108, 247, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.dimension-score:hover {
+  transform: translateY(-3px);
+}
+
+.score-bar {
+  height: 12px;
+  background: linear-gradient(90deg, #4a6cf7 0%, #89a3ff 100%);
+  border-radius: 6px;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 25%, 
+    rgba(255,255,255,0.3) 50%, 
+    transparent 75%
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.dimension-score h4 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.dimension-score h4::before {
+  content: '▹';
+  color: #4a6cf7;
+  margin-right: 0.8rem;
+  font-size: 1.4em;
+}
+
+/* 新增评分标准样式 */
+.scoring-criteria {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.scoring-criteria h4 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.scoring-criteria ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scoring-criteria li {
+  background: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 4px solid #3498db;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.scoring-criteria .range {
+  font-weight: 600;
+  color: #3498db;
+  margin-right: 1rem;
+}
+
+.scoring-criteria .analysis {
+  color: #7f8c8d;
+  font-size: 0.9em;
+  margin-top: 0.5rem;
 }

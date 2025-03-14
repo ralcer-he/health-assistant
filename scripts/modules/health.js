@@ -1,7 +1,7 @@
 // public/scripts/modules/health.js
 import { fetchLocalData, showLoading, createElement } from '../utils.js';
 
-class HealthModule {
+export class HealthModule {
   constructor() {
     window.currentModule = this;
     this.formData = { age: '', height: '', weight: '' };
@@ -9,7 +9,6 @@ class HealthModule {
     try {
       this.history = JSON.parse(localStorage.getItem('healthHistory') || '[]');
       this.healthPlan = JSON.parse(localStorage.getItem('healthPlan') || '{}');
-      this.stressData = JSON.parse(localStorage.getItem('stressData') || '{}');
     } catch (e) {
       this.clearCorruptedData();
     }
@@ -20,15 +19,12 @@ class HealthModule {
   clearCorruptedData() {
     localStorage.removeItem('healthHistory');
     localStorage.removeItem('healthPlan');
-    localStorage.removeItem('stressData');
     this.history = [];
     this.healthPlan = {};
-    this.stressData = {};
   }
 
   async init() {
     try {
-      this.config = await fetchLocalData('/health-assistant/data/health-config.json');
       this.renderForm();
       this.loadSavedData();
       this.bindEvents();
@@ -70,39 +66,25 @@ class HealthModule {
   bindEvents() {
     this.handleEvaluate = (e) => this.onSubmit(e);
     this.handleGenerate = () => this.generateHealthPlan();
-    this.handleStress = (e) => this.handleStressSubmit(e);
 
     document.getElementById('bmiForm')?.addEventListener('submit', this.handleEvaluate);
     document.getElementById('planForm')?.addEventListener('submit', this.handleGenerate);
-    document.getElementById('stressForm')?.addEventListener('submit', this.handleStress);
     this.handleReset = () => this.onReset();
     this.handleInput = () => this.onInput();
 
-    // 绑定核心事件
     document.getElementById('bmiForm')?.addEventListener('submit', this.handleSubmit);
     document.getElementById('resetBtn')?.addEventListener('click', this.handleReset);
     document.querySelectorAll('.form-input').forEach(input => {
       input.addEventListener('input', this.handleInput);
     });
 
-    // 精准的事件委托处理
     document.addEventListener('submit', e => {
       const form = e.target;
       
-      // 处理计划生成表单
       if (form.matches('#planForm')) {
         e.preventDefault();
         console.log('计划表单提交');
         this.generateHealthPlan();
-      }
-      
-      // 处理压力评估表单
-      if (form.matches('#stressForm')) {
-        e.preventDefault();
-        console.log('压力评估提交');
-        const scores = Array.from(form.querySelectorAll('input[type="radio"]:checked'))
-          .map(input => parseInt(input.value));
-        this.handleStressSubmit(scores);
       }
     });
   }
@@ -110,7 +92,6 @@ class HealthModule {
   unbindEvents() {
     document.getElementById('bmiForm')?.removeEventListener('submit', this.handleEvaluate);
     document.getElementById('planForm')?.removeEventListener('submit', this.handleGenerate);
-    document.getElementById('stressForm')?.removeEventListener('submit', this.handleStress);
     document.getElementById('bmiForm')?.removeEventListener('submit', this.handleSubmit);
     document.getElementById('resetBtn')?.removeEventListener('click', this.handleReset);
     document.querySelectorAll('.form-input').forEach(input => {
@@ -186,12 +167,146 @@ class HealthModule {
       <div class="health-dashboard">
         ${this.createBMICard(bmi)}
         ${this.createHealthPlanCard()}
-        ${this.createStressAssessmentCard()}
+        ${this.createPsychoTestCard()}
       </div>
     `;
 
-    // 重新绑定动态元素的事件
     this.bindPlanTaskEvents();
+    this.bindPsychoTestEvents();
+  }
+
+  createPsychoTestCard() {
+    return `
+      <div class="psycho-test-card">
+        <h3>🧠 心理测评中心</h3>
+        <div class="test-buttons">
+          <button class="test-btn depression" data-test="SDS">
+            <span class="emoji">😔</span>
+            抑郁自评量表（SDS）
+          </button>
+          <button class="test-btn anxiety" data-test="SAS">
+            <span class="emoji">😰</span>
+            焦虑自评量表（SAS）
+          </button>
+          <button class="test-btn ees" data-test="EES">
+            <span class="emoji">😌</span>
+            情绪稳定性测试（EES）
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+
+  bindPsychoTestEvents() {
+    document.querySelectorAll('.test-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => this.handleTestStart(e));
+    });
+  }
+
+  // 修改 handleTestStart 方法
+  handleTestStart(e) {
+    const testType = e.currentTarget.dataset.test.toUpperCase(); // 统一转为大写
+    showLoading('#resultSection');
+    
+    // 添加  支持
+    if (['SDS', 'SAS','EES'].includes(testType)) {
+      const resultSection = document.getElementById('resultSection');
+      if (resultSection) {
+        resultSection.innerHTML = this.createTestLandingPage(testType);
+        this.bindTestLandingEvents(testType);
+      }
+    }
+  }
+
+  // 更新测试入口页面创建方法
+  createTestLandingPage(testType) {
+    const testInfo = {
+      SDS: {
+        title: "抑郁自评量表（SDS）",
+        emoji: "😔",
+        description: "该量表包含20个题目，可快速评估您的抑郁倾向程度。测试结果将根据标准分自动分析并给出建议。",
+        instructions: [
+          "测试时长：约3-5分钟",
+          "题目类型：单选题",
+          "结果保密：仅存储于本地浏览器"
+        ]
+      },
+      SAS: {  // 新增 SAS 配置
+        title: "焦虑自评量表（SAS）",
+        emoji: "😰",
+        description: "该量表包含20个题目，用于评估焦虑症状的严重程度。测试结果将根据标准分提供专业建议。",
+        instructions: [
+          "测试时长：约3-5分钟", 
+          "按最近一周实际感受作答",
+          "结果仅用于自我评估参考"
+        ]
+      },
+      EES: {
+        title: "艾森克情绪稳定性测试（EES）",
+        emoji: "😌",
+        description: "本测试包含7个维度共78题，用于评估情绪稳定性、焦虑程度和心理承受力等核心心理素质。",
+        instructions: [
+          "测试时长：约15-20分钟",
+          "采用7分量表评估",
+          "自动生成心理素质分析报告"
+        ]
+      }
+    }[testType];
+
+    return `
+      <div class="test-landing">
+        <div class="test-header">
+          <h2>${testInfo.emoji} ${testInfo.title}</h2>
+          <button class="btn-back">← 返回测评中心</button>
+        </div>
+        <div class="test-overview">
+          <div class="test-description">
+            <p>${testInfo.description}</p>
+            <ul class="test-instructions">
+              ${testInfo.instructions.map(i => `<li>📌 ${i}</li>`).join('')}
+            </ul>
+          </div>
+          <div class="test-actions">
+            <button class="btn-start">立即开始测试</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  bindTestLandingEvents(testType) {
+    document.querySelector('.btn-back')?.addEventListener('click', () => {
+      this.renderHealthDashboard(this.currentBMI);
+    });
+
+    document.querySelector('.btn-start')?.addEventListener('click', async () => {
+      try {
+        const dataPath = {
+          SDS: '/health-assistant/data/sds_questions.json',
+          SAS: '/health-assistant/data/sas_questions.json',
+          EES: '/health-assistant/data/ees_questions.json'
+        }[testType];
+        
+        const questions = await fetchLocalData(dataPath);
+        
+        if (testType === 'EES') {
+          this.eesTest = new EESTest(questions, this);
+          this.eesTest.renderQuestion();
+        } else if (testType === 'SDS') {  // 添加 else 保证互斥
+          this.sdsTest = new SDSTest(questions, this);
+          this.sdsTest.renderQuestion();
+        } else if (testType === 'SAS') {
+          this.sasTest = new SASTest(questions, this);
+        }
+      } catch (error) {
+        this.showError('无法加载测试题目');
+      }
+    });
+
+    document.querySelector('.btn-sample')?.addEventListener('click', () => {
+      console.log('显示示例报告');
+    });
   }
 
   bindPlanTaskEvents() {
@@ -272,45 +387,18 @@ class HealthModule {
     `;
   }
 
-  createStressAssessmentCard() {
-    return `
-      <div class="stress-card">
-        <h3>🧘 心理压力评估</h3>
-        <form id="stressForm">
-          ${this.config.pressure_questions.map((q, index) => `
-            <div class="question-group">
-              <p>${index + 1}. ${q.text}</p>
-              <div class="options">
-                ${q.options.map(opt => `
-                  <label>
-                    <input type="radio" name="Q${index}" value="${opt.score}" required>
-                    ${opt.text}
-                  </label>
-                `).join('')}
-              </div>
-            </div>
-          `).join('')}
-          <button type="submit" class="btn btn-assessment">测评一下</button>
-        </form>
-        ${this.stressData.score !== undefined ? this.showStressResult() : ''}
-      </div>
-    `;
-  }
-
   async generateHealthPlan() {
     showLoading('resultSection');
     
     try {
       const planData = await fetchLocalData('/health-assistant/data/daily-plans.json');
       
-      // 兼容中英文键名
       const rawPlans = planData.日常计划 || planData.dailyPlans;
       
       if (!Array.isArray(rawPlans)) {
         throw new Error('数据格式错误: 日常计划必须是数组');
       }
 
-      // 数据结构转换
       const formattedData = rawPlans.reduce((acc, category) => {
         if (category?.type && Array.isArray(category.tasks)) {
           acc[category.type] = category.tasks.map(task => ({
@@ -348,7 +436,6 @@ class HealthModule {
         dataStatus: await this.checkDataStatus()
       });
 
-      // 应急回退
       this.healthPlan = {
         dailyTasks: [ {
           id: 'emergency_task',
@@ -375,7 +462,6 @@ class HealthModule {
   }
 
   toggleTask(taskId) {
-    // 确保 this.healthPlan.dailyTasks 已定义
     if (!this.healthPlan || !Array.isArray(this.healthPlan.dailyTasks)) {
       console.error('健康计划未初始化或格式错误');
       return;
@@ -390,7 +476,6 @@ class HealthModule {
     this.healthPlan.dailyTasks[taskIndex].completed = 
       !this.healthPlan.dailyTasks[taskIndex].completed;
     
-    // 更新进度
     const completedCount = this.healthPlan.dailyTasks.filter(t => t.completed).length;
     this.healthPlan.progress = {
       completed: Math.round((completedCount / this.healthPlan.dailyTasks.length) * 100)
@@ -398,43 +483,6 @@ class HealthModule {
     
     localStorage.setItem('healthPlan', JSON.stringify(this.healthPlan));
     this.renderHealthDashboard(this.currentBMI);
-  }
-
-  handleStressSubmit(scores) {
-    const total = scores.reduce((a, b) => a + b, 0);
-    const result = {
-      score: total,
-      date: new Date().toISOString(),
-      suggestion: this.getStressSuggestion(total)
-    };
-    
-    localStorage.setItem('stressData', JSON.stringify(result));
-    this.stressData = result;
-    
-    this.renderHealthDashboard(this.currentBMI);
-  }
-
-  renderStressAssessment() {
-    const stressCard = document.querySelector('.stress-card');
-    if (stressCard) {
-      stressCard.innerHTML = this.createStressAssessmentCard();
-    }
-  }
-
-  getStressSuggestion(score) {
-    if (score <= 3) return "保持良好状态，建议每日冥想";
-    if (score <= 6) return "注意压力管理，推荐瑜伽练习";
-    return "建议寻求专业心理咨询";
-  }
-
-  showStressResult() {
-    return `
-      <div class="stress-result">
-        <h4>评估结果</h4>
-        <p>您的压力评分为：${this.stressData.score}</p>
-        <p>建议：${this.stressData.suggestion}</p>
-      </div>
-    `;
   }
 
   saveToStorage() {
@@ -506,4 +554,319 @@ class HealthModule {
   }
 }
 
+class SDSTest {
+  constructor(questionData, parentModule) {
+    this.questionData = questionData;
+    this.questions = questionData.questions;
+    this.reverseScoring = new Set(questionData.reverseScoring);
+    this.answers = [];
+    this.currentQuestion = 0;
+    this.parentModule = parentModule;  // 保存父模块引用
+    this.answerHistory = []; // 新增回答历史记录
+  }
+
+  renderQuestion() {
+    const resultSection = document.getElementById('resultSection');
+    if (!resultSection) return;
+
+    resultSection.style.opacity = '0'; // 添加淡出效果
+    setTimeout(() => {
+      const question = this.questions[this.currentQuestion];
+      resultSection.innerHTML = `
+        <div class="sds-test-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: ${(this.currentQuestion / 20) * 100}%"></div>
+          </div>
+          <div class="question-container">
+            <div class="question-number">第 ${this.currentQuestion + 1} 题 / 共 20 题</div>
+            <div class="question-text">${question.text}</div>
+            <div class="options">
+              ${question.options.map(opt => `
+                <button class="option-btn" 
+                  data-score="${opt.score}" 
+                  data-reverse="${this.reverseScoring.has(question.id)}">
+                  ${opt.label}
+                </button>
+              `).join('')}
+            </div>
+            
+            <!-- 将导航按钮移动到题目容器内 -->
+            <div class="question-navigation">
+              ${this.currentQuestion > 0 ? 
+                '<button class="btn-prev">← 上一题</button>' : ''}
+              <div class="progress-text">${this.currentQuestion + 1}/20</div>
+            </div>
+          </div>
+        </div>
+      `;
+      resultSection.style.opacity = '1'; // 淡入效果
+
+      // 添加进度条动画
+      const progressBar = resultSection.querySelector('.progress');
+      if (progressBar) {
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0';
+        setTimeout(() => {
+          progressBar.style.transition = 'width 0.3s ease';
+          progressBar.style.width = `${(this.currentQuestion / 20) * 100}%`;
+        }, 10);
+      }
+
+      this.bindOptionEvents();
+      this.bindNavEvents(); // 新增导航事件绑定
+    }, 300);
+  }
+
+  bindOptionEvents() {
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const value = parseInt(e.target.dataset.score);
+        const isReverse = e.target.dataset.reverse === 'true';
+        this.recordAnswer(value, isReverse);
+
+        if (this.currentQuestion < 19) {
+          this.currentQuestion++;
+          this.renderQuestion();
+        } else {
+          this.calculateResult();
+        }
+      });
+    });
+  }
+
+  bindNavEvents() {
+    const prevButton = document.querySelector('.btn-prev');
+    if (prevButton) {
+      // 先移除旧的监听器再添加新的
+      prevButton.onclick = null; // 先清空事件
+      prevButton.addEventListener('click', () => {
+        if (this.currentQuestion > 0) {
+          this.currentQuestion--;
+          this.answers.length = this.currentQuestion + 1; // 保留之前的答案
+          this.renderQuestion();
+        }
+      });
+    }
+  }
+
+  recordAnswer(selectedScore, isReverse) {
+    const finalScore = isReverse ? 5 - selectedScore : selectedScore;
+    this.answers[this.currentQuestion] = finalScore; // 改为索引存储
+  }
+
+  calculateResult() {
+    const rawScore = this.answers.reduce((a, b) => a + b, 0);
+    const standardScore = Math.min(Math.round(rawScore * 1.25), 100);
+
+    const cutoff = this.questionData.scoringRules.standard.cutoffs
+      .find(c => standardScore < c.score);
+
+    const resultSection = document.getElementById('resultSection');
+    if (resultSection) {
+      resultSection.innerHTML = `
+        <div class="test-result">
+          <h3>${this.questionData.scaleName} 结果</h3>
+          <div class="score">标准分：${standardScore}</div>
+          <div class="conclusion">${cutoff.label}</div>
+          
+          <!-- 新增建议部分 -->
+          <div class="scoring-criteria">
+            <h4>📊 评分标准</h4>
+            <ul>
+              ${this.questionData.scoringRules.standard.cutoffs.map(c => `
+                <li ${standardScore < c.score ? 'class="active"' : ''}>
+                  <span class="range">${c.range}</span>
+                  <span class="label">${c.label}</span>
+                </li>
+              `).join('')}
+            </ul>
+          </div>
+
+          <div class="advice-section">
+            <h4>📌 专家建议</h4>
+            <div class="advice-content">
+              ${cutoff.advice.map(a => `<p>${a}</p>`).join('')}
+            </div>
+          </div>
+
+          <button class="btn-back">返回测评中心</button>
+        </div>
+      `;
+      document.querySelector('.btn-back').addEventListener('click', () => {
+        this.parentModule.renderHealthDashboard(this.parentModule.currentBMI);  // 使用父模块引用
+      });
+    }
+  }
+}
+// 新建SAS测试类
+class SASTest extends SDSTest {
+  constructor(questionData, parentModule) {
+    super(questionData, parentModule);
+    this.testType = 'SAS'; // 用于区分测试类型
+  }
+  
+  // 可覆盖父类方法实现差异逻辑
+}
+class EESTest extends SDSTest {
+  constructor(questionData, parentModule) {
+    super(questionData, parentModule);
+    this.testType = 'EES';
+    // 动态获取题目总数
+    this.totalQuestions = this.questions.length; 
+    
+    // 新增数据完整性校验
+    if (this.totalQuestions !== 78) {
+      console.error('EES题目数量异常，应为78题，实际加载：', this.totalQuestions);
+      this.parentModule.showError('测试数据异常，请刷新重试');
+    }
+  }
+
+  renderQuestion() {
+    const resultSection = document.getElementById('resultSection');
+    if (!resultSection) return;
+
+    resultSection.style.opacity = '0';
+    setTimeout(() => {
+      // 修复索引保护逻辑（修改此处）
+      if (
+        this.currentQuestion < 0 || 
+        this.currentQuestion >= this.questions.length ||
+        !this.questions[this.currentQuestion]
+      ) {
+        console.error('题目索引异常', {
+          current: this.currentQuestion,
+          total: this.questions.length,
+          question: this.questions[this.currentQuestion]
+        });
+        this.currentQuestion = Math.max(0, Math.min(this.currentQuestion, this.questions.length - 1));
+        return; // 不再重置为0，而是限制在有效范围
+      }
+      
+      const question = this.questions[this.currentQuestion];
+      if (!question?.text) { // 加强空值检查
+        this.parentModule.showError('题目加载失败，请重试测试');
+        return;
+      }
+
+      const progressPercent = (this.currentQuestion / this.totalQuestions * 100).toFixed(1);
+      resultSection.innerHTML = `
+        <div class="ees-test-container">
+          <div class="progress-bar">
+            <div class="progress" style="width: ${progressPercent}%"></div>
+          </div>
+          <div class="question-container">
+            <div class="question-number">第 ${this.currentQuestion + 1} 题 / 共 ${this.totalQuestions} 题</div>
+            <div class="question-text">${question.text}</div>
+            <div class="options">
+              ${question.options.map(opt => `
+                <button class="option-btn" data-score="${opt.score}">
+                  ${opt.label}
+                </button>
+              `).join('')}
+            </div>
+            <div class="question-navigation">
+              ${this.currentQuestion > 0 ? '<button class="btn-prev">← 上一题</button>' : ''}
+            </div>
+          </div>
+        </div>
+      `;
+
+      // 进度条动画逻辑（使用总题数）
+      const progressBar = resultSection.querySelector('.progress');
+      if (progressBar) {
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0';
+        setTimeout(() => {
+          progressBar.style.transition = 'width 0.3s ease';
+          progressBar.style.width = `${progressPercent}%`;
+        }, 10);
+      }
+
+      this.bindOptionEvents();
+      this.bindNavEvents();
+      resultSection.style.opacity = '1';
+    }, 300);
+  }
+
+  // 覆盖父类选项点击事件处理
+  bindOptionEvents() {
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        // 修改边界条件判断
+        if (this.currentQuestion >= this.totalQuestions - 1) {
+          this.calculateResult(); // 到达最后一题直接计算结果
+          return;
+        }
+        
+        const value = parseInt(e.target.dataset.score);
+        this.recordAnswer(value, false);
+        
+        this.currentQuestion = Math.min(this.currentQuestion + 1, this.totalQuestions - 1);
+        this.renderQuestion();
+      });
+    });
+  
+  }
+
+  // 新增维度分数计算
+  calculateDimensionScores() {
+    const dimensionMap = new Map();
+    this.questions.forEach((q, index) => {
+      const dimension = q.dimension?.trim() || '未分类';
+      if (!dimensionMap.has(dimension)) {
+        dimensionMap.set(dimension, []);
+      }
+      if (typeof this.answers[index] === 'number') {
+        dimensionMap.get(dimension).push(this.answers[index]);
+      }
+    });
+    
+    return Array.from(dimensionMap).map(([dim, scores]) => ({
+      dimension: dim,
+      // 修复类型问题：先转为数值再保留一位小数
+      average: scores.length > 0 
+        ? parseFloat((scores.reduce((a, b) => a + b, 0) / scores.length).toFixed(1))
+        : 0
+    }));
+  }
+
+  // 覆盖结果计算方法
+  calculateResult() {
+    const dimensionResults = this.calculateDimensionScores();
+    
+    const resultSection = document.getElementById('resultSection');
+    resultSection.innerHTML = `
+      <div class="test-result">
+        <h3>${this.questionData.scaleName} 多维分析报告</h3>
+        ${dimensionResults.map(d => `
+          <div class="dimension-score">
+            <h4>${d.dimension}</h4>
+            <div class="score-bar" style="width: ${(d.average / 7 * 100).toFixed(1)}%"></div>
+            <span>${d.average.toFixed(1)}/7</span>
+          </div>
+        `).join('')}
+
+        <!-- 新增评分标准展示 -->
+        <div class="scoring-criteria">
+          <h4>📊 整体评估标准</h4>
+          <ul>
+            ${this.questionData.scoringRules.standard.cutoffs.map(c => `
+              <li>
+                <span class="range">${c.score}分以下</span>
+                <span class="label">${c.label}</span>
+                <div class="analysis">${c.analysis}</div>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <button class="btn-back">返回测评中心</button>
+      </div>
+    `;
+    
+    document.querySelector('.btn-back').addEventListener('click', () => {
+      this.parentModule.renderHealthDashboard(this.parentModule.currentBMI);
+    });
+  }
+}
 export default new HealthModule();
