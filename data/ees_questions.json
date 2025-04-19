@@ -1,0 +1,736 @@
+{
+    "version": "2.1",
+    "scaleName": "艾森克情绪稳定性测试（EES）",
+    "instructions": "根据您的第一感受选择最符合您的答案。每个问题有三个选项：A. 是，B. 不一定，C. 否。",
+    "dimensions": [
+      "自卑感", "抑郁性", "焦虑", "强迫性", "依赖性", "疑病症", "负罪感"
+    ],
+    "questions": [
+      {
+        "dimension": "自卑感",
+        "text": "你是否常常觉得自己不如他人？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否经常对自已的外貌或能力感到不满意？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己比大多数人更笨拙？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否常常觉得别人比你更受欢迎？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己没有取得应有的成就？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己的能力被低估了？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己在社交场合表现得不够好？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己没有得到应有的尊重？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己在群体中不被重视？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己没有取得应有的成就？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己没有得到应有的认可？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "自卑感",
+        "text": "你是否觉得自己在工作或学习中不如别人？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否经常感到情绪低落、沮丧？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否对以往感兴趣的活动失去兴趣？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否经常感到生活没有意义？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否经常感到孤独，即使在人群中也是如此？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "抑郁性",
+        "text": "你是否觉得自己经常被负面情绪笼罩？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否容易感到紧张、不安？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否经常担心一些小事情？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对压力时容易感到心跳加速或呼吸急促？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在社交场合中容易感到紧张？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对重要任务时容易感到焦虑？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对不确定性时容易感到不安？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对压力时容易感到手心出汗或颤抖？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对重要决策时容易感到犹豫不决？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对新环境时容易感到不适应？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "焦虑",
+        "text": "你是否在面对批评时容易感到过度紧张？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否经常反复思考一些无意义的事情？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否对一些细节过于关注，难以放下？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否有反复检查门窗、电器等的习惯？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "强迫性",
+        "text": "你是否在某些事情上过于追求完美？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在做决定时经常需要他人的意见？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否觉得自己难以独立完成任务？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对重要决策时倾向于依赖他人的建议？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对困难时更希望有人帮助你？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对重要任务时更愿意与他人合作？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对重要决策时倾向于依赖他人的建议？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对困难时更希望有人帮助你？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对重要任务时更愿意与他人合作？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对重要决策时倾向于依赖他人的建议？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对困难时更希望有人帮助你？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "依赖性",
+        "text": "你是否在面对重要任务时更愿意与他人合作？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否经常担心自己的健康状况？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否对身体的轻微不适过度担忧？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否经常关注自己的身体症状？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否在感到身体不适时容易担心患有严重疾病？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否经常检查自己的身体状况？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否在感到身体不适时容易担心患有严重疾病？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否经常检查自己的身体状况？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否在感到身体不适时容易担心患有严重疾病？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否经常检查自己的身体状况？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否在感到身体不适时容易担心患有严重疾病？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "疑病症",
+        "text": "你是否经常检查自己的身体状况？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否经常为一些小事感到内疚？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否觉得自已经常让别人失望？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在做错事后容易感到深深的自责？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在面对批评时容易感到过度内疚？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在做错事后容易感到深深的自责？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在面对批评时容易感到过度内疚？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在做错事后容易感到深深的自责？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在面对批评时容易感到过度内疚？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在做错事后容易感到深深的自责？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在面对批评时容易感到过度内疚？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在做错事后容易感到深深的自责？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      },
+      {
+        "dimension": "负罪感",
+        "text": "你是否在面对批评时容易感到过度内疚？",
+        "options": [
+          {"score": 1, "label": "A. 是"},
+          {"score": 0, "label": "B. 不一定"},
+          {"score": -1, "label": "C. 否"}
+        ]
+      }
+    ],
+    "scoringRules": {
+      "standard": {
+        "cutoffs": [
+          {
+            "score": 30,
+            "label": "情绪稳定性极高",
+            "analysis": "心理素质优秀，能良好应对压力。",
+            "advice": ["继续保持良好的心理状态", "保持规律作息和适量运动"]
+          },
+          {
+            "score": 60,
+            "label": "情绪稳定性中等",
+            "analysis": "具备一定情绪调节能力，但可能存在轻微波动。",
+            "advice": ["尝试放松训练", "增加社交活动频率", "如症状持续两周以上建议咨询心理医生"]
+          },
+          {
+            "score": 100,
+            "label": "情绪稳定性较低",
+            "analysis": "情绪波动较为频繁，可能影响日常生活。",
+            "advice": ["建议寻求专业心理咨询", "建立规律的生活作息表", "每天进行30分钟有氧运动"]
+          }
+        ]
+      }
+    }
+  }

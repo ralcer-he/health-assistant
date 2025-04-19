@@ -1,0 +1,3315 @@
+/* styles/modules.css */
+/* ------------------ 食谱模块增强 ------------------ */
+/* 食谱模块样式 */
+.scenario-buttons {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  margin: 2rem 0;
+}
+
+/* 场景按钮基础样式 */
+.scenario-btn, .method-btn {
+  padding: 1.5rem;
+  border: 2px solid;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+
+
+/* 应急场景 - 红色系 */
+.scenario-btn[data-scenario="应急"] {
+  background: #ff6b6b;
+  border-color: #c92a2a;
+  color: white;
+}
+
+/* 正常场景 - 黄色系 */
+.scenario-btn[data-scenario="正常"] {
+  background: #ffe066;
+  border-color: #f59f00;
+  color: #2b8a3e;
+}
+
+/* 休闲场景 - 绿色系 */
+.scenario-btn[data-scenario="休闲"] {
+  background: #69db7c;
+  border-color: #2b8a3e;
+  color: white;
+}
+
+/* 悬停效果 */
+.scenario-btn:hover, .method-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  filter: brightness(0.95);
+}
+
+/* 激活状态 */
+.scenario-btn.active {
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.5);
+}
+
+/* 以下原有样式保持不变 */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.recipe-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.recipe-card {
+  background: rgb(255, 255, 255);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.calorie-badge {
+  background: #ff6b6b;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.toggle-details {
+  background: none;
+  border: none;
+  color: #4dabf7;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-top: 1rem;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+/* 新增图标 */
+.method-btn[data-method="烤箱"]::before { content: "🔥"; margin-right: 8px; }
+.method-btn[data-method="慢炖锅"]::before { content: "🍲"; margin-right: 8px; }
+
+/* 服务份数样式 */
+.recipe-card .servings {
+  color: #868e96;
+  font-size: 0.9em;
+  margin-top: 8px;
+}
+
+/* ------------------ 通用模块样式 ------------------
+.loading-overlay {
+  position: relative;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+} */
+
+/* ------------------ 健康管理模块 ------------------ 
+模块功能：BMI计算、健康计划跟踪、进度可视化
+关键样式说明：
+- .bmi-form 表单容器圆角阴影设计
+- .bmi-badge 状态徽章颜色编码系统
+- .health-dashboard 自适应网格布局
+- .plan-progress 进度条动画过渡效果
+响应式设计：
+- 移动端堆叠排列健康数据卡片
+- 小屏幕隐藏次要可视化元素
+*/
+.bmi-form {
+  background: linear-gradient(145deg, #f8faff 0%, #f3f6ff 100%);
+  border: 2px solid rgba(74, 108, 247, 0.1);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.08);
+}
+
+.bmi-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bmi-badge.underweight { background: #4dabf7; color: white; }
+.bmi-badge.healthy { background: #69db7c; color: white; }
+.bmi-badge.overweight { background: #ff922b; color: white; }
+
+/* BMI进度条容器 */
+.bmi-progress-bar {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+}
+
+.bmi-progress-bar .progress-fill {
+  height: 10px;
+  background: #4dabf7;
+  border-radius: 5px;
+  transition: width 0.5s ease;
+}
+
+.advice-section {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.health-dashboard {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  margin-top: 2rem;
+  font-size: 1.1rem; 
+}
+.manual-advice {
+  font-size: 1.15rem; /* 建议文字调大 */
+  line-height: 1.6; /* 增加行高 */
+  padding: 1.2rem; /* 增加内边距 */
+}
+.advice-item {
+  margin-bottom: 1rem; /* 增加条目间距 */
+  padding: 0.8rem 1rem; /* 增加条目内边距 */
+  background: rgba(255,255,255,0.8); /* 轻微背景色 */
+  border-radius: 8px; /* 圆角 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* 轻微阴影 */
+}
+
+/* BMI结果容器 */
+.bmi-result {
+  background: linear-gradient(145deg, #ffffff 0%, #f8faff 100%);
+  border: 2px solid rgba(74, 108, 247, 0.1);
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem; 
+}
+.bmi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+/* BMI图片样式 */
+.bmi-image {
+  width: clamp(90px, 15vw, 120px);  /* 略微放大图片 */
+  height: clamp(90px, 15vw, 120px);
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bmi-image:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.grid-container {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr; /* 单列布局 */
+
+}
+.health-analysis {
+  min-height: 200px;
+}
+.health-analysis h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: #2c3e50;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+.bmi-value {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bmi-value::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  opacity: 0.1;
+  z-index: -1;
+}
+.bmi-value.过轻::after { background: #4a90e2; }
+.bmi-value.健康::after { background: #69db7c; }
+.bmi-value.超重::after { background: #ff6b6b; }
+
+.bmi-value strong {
+  font-size: 3.5rem;
+  color: #2c3e50;
+  letter-spacing: -2px;
+  margin: 0.5rem 0;
+}
+.bmi-metric {
+  text-align: center;
+}
+.bmi-metric strong {
+  font-size: 2.2rem;
+  display: block;
+  line-height: 1;
+  color: #2c3e50;
+}
+.bmi-metric .category {
+  font-size: 0.9em;
+  background: #f1f3f5;
+  padding: 0.2rem 0.8rem;
+  border-radius: 20px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+.category {
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+}
+
+.bmi-value.过轻 .category { background: #e3f2fd; color: #1a73e8; }
+.bmi-value.健康 .category { background: #e8f5e9; color: #2e7d32; }
+.bmi-value.超重 .category { background: #ffebee; color: #c62828; }
+
+
+.progress-bar {
+  height: 100%;
+  background: #4dabf7;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+
+.loading-status {
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  color: #666;
+}
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #dee2e6;
+  border-top-color: #4dabf7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .bmi-form {
+    padding: 1.5rem;
+  }
+  
+  .input-group {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .btn-evaluate, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 健康计划模块 */
+.health-plan-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8faff 100%);
+  border: 2px solid rgba(74, 108, 247, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.health-plan-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  background: rgba(74, 108, 247, 0.05);
+  border-radius: 50%;
+}
+
+.plan-progress {
+  height: 10px;
+  background: #f0f4ff;
+  border-radius: 5px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.plan-progress .progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4a6cf7 0%, #89a3ff 100%);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.plan-progress span {
+  position: absolute;
+  right: 0;
+  top: -22px;
+  color: #4a5568;
+  font-size: 0.9rem;
+}
+.daily-tasks {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+}
+
+
+
+.daily-tasks li {
+  padding: 1.2rem;
+  margin: 0.8rem 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(74, 108, 247, 0.05);
+}
+
+.daily-tasks li:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(74, 108, 247, 0.1);
+}
+
+.daily-tasks li.completed {
+  background: rgba(233, 241, 255, 0.5);
+  position: relative;
+}
+
+.daily-tasks li.completed::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: #4a6cf7;
+  border-radius: 10px 0 0 10px;
+}
+.daily-tasks input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e0e4f5;
+  border-radius: 6px;
+  margin-right: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.daily-tasks input[type="checkbox"]:checked {
+  background: #4a6cf7 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E") center/14px no-repeat;
+  border-color: #4a6cf7;
+}
+/* 计划任务图标 */
+.task-icon {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+/* 新增重新生成按钮样式 */
+/* 新增按钮容器样式 */
+.health-plan-card .btn-regenerate {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+}
+.btn-regenerate {
+  background: linear-gradient(135deg, #4a6cf7 0%, #89a3ff 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+  transition: all 0.3s ease;
+  width: auto !important;
+  margin-top: 1.5rem;
+}
+
+.btn-regenerate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 108, 247, 0.4);
+}
+
+.btn-regenerate:active {
+  transform: scale(0.95);
+}
+
+/* 在现有进度条样式后添加 */
+.health-plan-card {
+  position: relative;
+}
+
+/* 新增加载动画 */
+.regenerating::after {
+  content: "🔁";
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.btn-evaluate {
+  background: linear-gradient(135deg, #4a6cf7 0%, #89a3ff 100%) !important;
+  border: none !important;
+  color: white !important;
+  padding: 1rem 2.5rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+  transition: all 0.3s ease;
+}
+.btn-secondary {
+  background: rgba(74, 108, 247, 0.1) !important;
+  color: #4a6cf7 !important;
+  border: 2px solid rgba(74, 108, 247, 0.2) !important;
+  padding: 1rem 2rem;
+}
+
+.btn-generate {
+  background: #afd7ff !important;
+  border-color: #afd7ff !important;
+}
+/* 新增的饮食计划样式 */
+.nutrition-plan {
+  border-left: 3px solid #69db7c;
+  padding-left: 1rem;
+}
+/* 添加缓存状态指示 */
+.analysis-content[data-cached]::after {
+  content: "（缓存版本）";
+  font-size: 0.8em;
+  color: #666;
+  margin-left: 8px;
+}
+
+.analysis-content[data-cached] {
+  opacity: 0.9;
+  filter: saturate(0.8);
+}
+
+/* ————————————————————————————疾病诊断功能—————————————————————————————— */
+
+.diagnosis-module {
+  padding: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.module-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.symptom-selector {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+#symptomSearch {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#symptomSearch:focus {
+  border-color: #3498db;
+}
+
+.btn-clear {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #7f8c8d;
+  margin-left: 10px;
+  transition: color 0.3s;
+}
+
+.btn-clear:hover {
+  color: #e74c3c;
+}
+
+.symptom-categories-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.symptom-category {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.symptom-category h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+  color: #2c3e50;
+}
+
+.symptom-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.symptom-btn {
+  padding: 8px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.symptom-btn:hover {
+  background: #eef7ff;
+  border-color: #3498db;
+}
+
+.symptom-btn.active {
+  background: #3498db;
+  color: white;
+  border-color: #3498db;
+  box-shadow: 0 2px 5px rgba(52, 152, 219, 0.2);
+}
+.btn-refresh {
+  background: transparent;
+  border: none;
+  color: #4a6cf7;
+  cursor: pointer;
+  font-size: 0.8em;
+  margin-left: 10px;
+  padding: 2px 8px;
+}
+
+.btn-refresh:hover {
+  text-decoration: underline;
+}
+.selected-symptoms {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background: #f0f7ff;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.selected-symptoms-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.selected-symptom {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 15px;
+  padding: 5px 12px;
+  font-size: 13px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: #e74c3c;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.btn-analyze, .btn-clear-all {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-analyze {
+  background: #3498db;
+  color: white;
+}
+
+.btn-analyze:hover {
+  background: #2980b9;
+}
+
+.btn-clear-all {
+  background: #e74c3c;
+  color: white;
+}
+
+.btn-clear-all:hover {
+  background: #c0392b;
+}
+
+.results-container {
+  margin-bottom: 30px;
+}
+
+.diagnosis-card {
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.confidence-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  background: linear-gradient(90deg, rgba(52,152,219,0.2) 0%, rgba(52,152,219,0.1) 100%);
+  z-index: 1;
+  transition: width 0.5s ease;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.diagnosis-card h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.confidence-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 20px;
+  font-size: 14px;
+}
+
+.probability {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.common-symptoms-match {
+  color: #7f8c8d;
+}
+
+.symptom-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.matched-symptoms, .related-symptoms {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.symptom-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.symptom-item {
+  background: #eef7ff;
+  padding: 4px 10px;
+  border-radius: 15px;
+  font-size: 13px;
+}
+
+.advice-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.advice-box {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.advice-box h4 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.btn-view-details {
+  display: inline;
+  width: 100%;
+  padding: 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 500;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+
+.btn-view-details:hover {
+  background: #2980b9;
+}
+
+.history-section {
+  margin-bottom: 30px;
+}
+
+.history-section h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.history-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-item {
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.history-date {
+  font-weight: 500;
+}
+
+.history-symptoms {
+  color: #3498db;
+}
+
+.history-result {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.feedback-section {
+  text-align: center;
+}
+
+.btn-feedback {
+  background: #9b59b6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-feedback:hover {
+  background: #8e44ad;
+}
+
+.feedback-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.feedback-form h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.feedback-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  resize: none;
+  margin-bottom: 15px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-cancel {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background: #2ecc71;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.disease-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  width: 80%;
+  max-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #3498db;
+  color: white;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 28px;
+  cursor: pointer;
+  transition: color 0.3s;
+  padding: 0 8px;
+}
+
+.close-btn:hover {
+  color: #ff6b6b;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+.modal-body h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.symptom-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.symptom-detail-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.symptom-name {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.symptom-weight {
+  font-size: 13px;
+  color: #7f8c8d;
+}
+
+.common-indicator {
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.common {
+  background: #e6f7e6;
+  color: #27ae60;
+}
+
+.not-common {
+  background: #fef0f0;
+  color: #e74c3c;
+}
+
+.feedback-success {
+  background: #f0f7ff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.feedback-success button {
+  margin-top: 10px;
+  padding: 8px 15px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.error-message {
+  background: #fef0f0;
+  color: #e74c3c;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+.diagnosis-module .disclaimer {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #666;
+  background: #fff9f9;
+  border-radius: 8px;
+  padding: 15px 20px;
+  border: 1px solid #ffebee;
+  margin: 0 auto 25px;
+  max-width: 800px;
+  animation: fadeIn 0.6s ease;
+}
+
+.diagnosis-module .disclaimer strong {
+  color: #ff6b6b;
+  display: block;
+  margin-bottom: 8px;
+}
+.modal-header h2 {
+  color: #2c3e50; /* 原为白色 */
+  margin: 0;
+}
+
+/* 新增历史记录相关样式 */
+.history-section {
+  margin-bottom: 30px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.btn-view-full {
+  background: #3498db;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-view-full:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+/* 完整病历模态框样式 */
+.history-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  z-index: 2000;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 12px;
+  max-height: 80vh;
+  overflow: hidden;
+  animation: slideIn 0.3s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  max-height: calc(80vh - 100px);
+}
+
+.history-detail {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.diagnosis-result {
+  margin-top: 10px;
+  padding: 10px;
+  border-left: 3px solid #3498db;
+  background: #f8f9ff;
+}
+
+.disease-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.confidence {
+  color: #3498db;
+  margin-left: 10px;
+  font-size: 0.9em;
+}
+
+.matched-symptoms {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+/* 新增预防提示样式 */
+.prevention-alert {
+    background: linear-gradient(145deg, #f0f9ff 0%, #e6f7ff 100%);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 0 auto 25px;
+    max-width: 800px;
+    border-left: 4px solid #2196F3;
+}
+.prevention-alert .loading-status {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #4a5568;
+}
+.prevention-alert .spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.prevention-alert .loaded {
+  color: #2c3e50;
+  animation: fadeIn 0.5s ease;
+}
+.prevention-alert .alert-content[style*="⚠️"] {
+  color: #e74c3c;
+  background: #fff0f0;
+  padding: 10px;
+  border-radius: 6px;
+}
+.alert-header {
+    font-weight: 600;
+    color: #0d47a1;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.alert-content {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #37474f;
+}
+.tip-item {
+  padding: 10px;
+  margin: 8px 0;
+  background: rgba(255,255,255,0.9);
+  border-radius: 6px;
+  position: relative;
+  padding-left: 32px;
+}
+
+.tip-item::before {
+  content: '▹';
+  position: absolute;
+  left: 12px;
+  color: #4a6cf7;
+  font-size: 1.2em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 工具模块通用样式 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.spinner-border {
+  border-color: #175199 3px;
+}
+
+.error-card {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* 分页器 */
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.page-btn.active {
+  background: #ff6b6b;
+  color: white;
+  border-color: #ff6b6b;
+}
+
+/* 强制显示结果区域 */
+.result-section.hidden {
+  display: inline !important; 
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.result-section {
+  opacity: 1;
+}
+
+/* 基础数据输入保障 */
+.form-input {
+  padding: 14px 18px;
+  border: 2px solid #e0e4f5;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.9);
+}
+.form-input:focus {
+  border-color: #4a6cf7;
+  box-shadow: 0 4px 12px rgba(74, 108, 247, 0.15);
+  background: white;
+}
+.action-buttons {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+
+/* ------------------ 心理测评模块 ------------------ */
+
+.test-landing {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f1f4ff 100%);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.1);
+  animation: fadeIn 0.6s ease;
+}
+
+.test-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(74, 108, 247, 0.1);
+}
+
+.test-header h2 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-back {
+  background: rgba(74, 108, 247, 0.1);
+  color: #4a6cf7;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: rgba(74, 108, 247, 0.2);
+  transform: translateX(-5px);
+}
+
+.test-overview {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.test-description {
+  flex: 2;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.test-instructions {
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.test-instructions li {
+  position: relative;
+  padding: 0.8rem 0;
+  color: #4a5568;
+  line-height: 1.6;
+}
+
+.test-instructions li::before {
+  content: '▹';
+  position: absolute;
+  left: -1.5rem;
+  color: #4a6cf7;
+  font-size: 1.2em;
+}
+
+.test-actions {
+  flex: 1;
+  position: sticky;
+  top: 1rem;
+}
+
+.btn-start {
+  background: linear-gradient(135deg, #4a6cf7 0%, #89a3ff 100%);
+  color: white;
+  padding: 1.2rem 2.5rem;
+  border: none;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn-start::before {
+  content: '✨';
+  font-size: 1.2em;
+}
+
+.btn-start:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(74, 108, 247, 0.4);
+  background: linear-gradient(135deg, #3b5bdb 0%, #728fff 100%);
+}
+
+.btn-start:active {
+  transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .test-overview {
+    flex-direction: column;
+  }
+  
+  .test-actions {
+    width: 100%;
+  }
+  
+  .btn-start {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .test-header h2 {
+    font-size: 1.4rem;
+  }
+}
+.psycho-test-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8faff 100%);
+  border: 2px solid rgba(74, 108, 247, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+.psycho-test-card::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  background: rgba(74, 108, 247, 0.05);
+  border-radius: 50%;
+}
+
+.test-buttons {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.test-btn {
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.test-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.test-btn .emoji {
+  font-size: 1.8em;
+  margin-right: 1rem;
+  filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+}
+
+/* 抑郁测试按钮样式 */
+.test-btn.depression {
+  background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+  color: #c62828;
+}
+.test-btn.depression::after { background: #c62828; }
+
+.test-btn.depression:hover {
+  background: #ffcdd2;
+}
+
+/* 焦虑测试按钮样式 */
+.test-btn.anxiety {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+  color: #ef6c00;
+}
+.test-btn.anxiety::after { background: #ef6c00; }
+
+.test-btn.anxiety:hover {
+  background: #ffe0b2;
+}
+
+/* 情绪测试按钮样式 */
+.test-btn.ees {
+  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+  color: #2e7d32;
+}
+.test-btn.ees::after { background: #2e7d32; }
+
+.test-btn.ees:hover {
+  background: #c8e6c9;
+}
+.test-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+
+.test-btn:active {
+  transform: scale(0.98);
+}
+@media (max-width: 768px) {
+  .option-btn {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .question-text {
+    font-size: 1.1rem;
+  }
+  
+  .test-result .score {
+    font-size: 2rem;
+  }
+}
+/* 测评进度指示器 */
+.test-progress {
+  height: 4px;
+  background: rgba(74, 108, 247, 0.1);
+  border-radius: 2px;
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.test-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #4a6cf7 0%, #89a3ff 100%);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* 测试结果页样式 */
+.test-result {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.test-result .score {
+  font-size: 2.5rem;
+  color: #2d3439;
+  margin: 1rem 0;
+  font-weight: bold;
+}
+
+.test-result .conclusion {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 2rem 0;
+  font-size: 1.4rem;
+}
+/* 新增测试进度条样式 */
+.sds-test-container .progress-bar {
+  height: 8px;
+  background: #e9ecef;
+  border-radius: 4px;
+  margin: 1rem 0;
+  overflow: hidden;
+}
+
+.sds-test-container .progress {
+  height: 100%;
+  background: #4a90e2;
+  transition: width 0.3s ease;
+}
+
+/* 题目容器样式 */
+.question-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin: 1rem 0;
+}
+
+.question-number {
+  color: #6c757d;
+  margin-bottom: 1rem;
+  font-size: 0.9em;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: #2d3439;
+  line-height: 1.5;
+}
+
+/* 选项按钮样式 */
+.options {
+  display: grid;
+  gap: 1rem;
+}
+
+.option-btn {
+  padding: 1rem;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.option-btn:hover {
+  border-color: #4a90e2;
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.option-btn:active {
+  transform: translateY(0);
+}
+
+
+/* 修改导航按钮样式 */
+.question-navigation {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.btn-prev {
+  /* 保持原有样式 */
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 2px solid #dee2e6;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+/* 增加按钮间距 */
+.btn-prev:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* 新增评分标准样式 */
+.scoring-criteria {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+}
+
+.scoring-criteria li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.scoring-criteria li.active {
+  background: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+
+/* 专家建议区块 */
+.advice-section {
+  background: #fff3e0;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.advice-content p {
+  padding: 10px;
+  background: white;
+  border-radius: 6px;
+  margin: 8px 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+/* 补充EES进度条动画样式 */
+.ees-test-container .progress-bar {
+  background: #f0f4c3;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.ees-test-container .progress {
+  background: #8bc34a;
+  height: 100%;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* 新增EES结果样式 */
+.ees-result {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f1f4ff 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.ees-result::before {
+  content: '';
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  background: rgba(74, 108, 247, 0.05);
+  border-radius: 50%;
+}
+
+.dimension-score {
+  background: white;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  border-left: 4px solid #4a6cf7;
+  box-shadow: 0 3px 6px rgba(74, 108, 247, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.dimension-score:hover {
+  transform: translateY(-3px);
+}
+
+.score-bar {
+  height: 12px;
+  background: linear-gradient(90deg, #4a6cf7 0%, #89a3ff 100%);
+  border-radius: 6px;
+  margin: 1rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 25%, 
+    rgba(255,255,255,0.3) 50%, 
+    transparent 75%
+  );
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.dimension-score h4 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+
+.dimension-score h4::before {
+  content: '▹';
+  color: #4a6cf7;
+  margin-right: 0.8rem;
+  font-size: 1.4em;
+}
+
+/* 新增评分标准样式 */
+.scoring-criteria {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.scoring-criteria h4 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.scoring-criteria ul {
+  list-style: none;
+  padding: 0;
+}
+
+.scoring-criteria li {
+  background: white;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-left: 4px solid #3498db;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.scoring-criteria .range {
+  font-weight: 600;
+  color: #3498db;
+  margin-right: 1rem;
+}
+
+.scoring-criteria .analysis {
+  color: #7f8c8d;
+  font-size: 0.9em;
+  margin-top: 0.5rem;
+}
+/* 新增饮水卡片样式 */
+.water-card {
+  background: linear-gradient(145deg, #e3f2fd 0%, #f7fbff 100%);
+  border: 2px solid rgba(74, 108, 247, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(32, 66, 146, 0.08);
+  margin-top: 2rem;
+}
+
+.water-progress {
+  height: 120px;
+  position: relative;
+  margin: 2rem 0;
+}
+
+.water-progress .progress-bar {
+  height: 100%;
+  background: linear-gradient(180deg, #89CFF0 0%, #4a6cf7 100%);
+  border-radius: 12px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+}
+
+.progress-text span:first-child {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: block;
+  line-height: 1.2;
+}
+
+.progress-text span:last-child {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.water-controls {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr auto;
+}
+
+.water-input {
+  padding: 1rem;
+  border: 2px solid #89CFF0;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.quick-add-btns {
+  display: flex;
+  gap: 1rem;
+}
+
+.btn-water-add {
+  background: rgba(137, 207, 240, 0.2);
+  color: #2c3e50;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-water-add:hover {
+  background: #89CFF0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(137, 207, 240, 0.3);
+}
+/* 新增历史记录样式 */
+.water-history {
+  margin-top: 2rem;
+  border-top: 1px solid rgba(74, 108, 247, 0.1);
+  padding-top: 1.5rem;
+}
+
+.health-history-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 80px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.health-history-item span:first-child {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.health-history-item span:last-child {
+  text-align: right;
+  font-weight: 500;
+  color: #4a6cf7;
+}
+/* 新增历史记录头部样式 */
+.water-history .history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.water-history .progress-bar {
+  height: 8px;
+  background: #f0f4ff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.water-history .progress-bar div {
+  height: 100%;
+  background: #89CFF0;
+  transition: width 0.3s ease;
+}
+/* 调整重置按钮样式 */
+.btn-water-reset {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid #ff6b6b;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.btn-water-reset:hover {
+  background: #ff6b6b;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+/* 调整历史记录标题间距 */
+.water-history h4 {
+  margin: 0;
+  font-size: 1.1em;
+}
+/* ------------------ 饮食记录模块 ------------------ */
+/* 统一卡片布局 */
+.health-dashboard {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  align-items: start; /* 新增对齐方式 */
+}
+
+/* 饮食卡片样式增强 */
+.diet-card {
+  background: linear-gradient(145deg, #f8fbff 0%, #ffffff 100%);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 4px 24px rgba(74, 108, 247, 0.08); /* 增加蓝色系阴影 */
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(74, 108, 247, 0.15);
+}
+
+.diet-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  background: rgba(74, 108, 247, 0.03);
+  border-radius: 8px;
+}
+
+.diet-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.btn-diet-reset {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  border: 1px solid #ff6b6b;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-diet-reset:hover {
+  background: #ff6b6b;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+.diet-floating-progress {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.progress-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: 
+    radial-gradient(closest-side, white 79%, transparent 80% 100%),
+    conic-gradient(#4a6cf7 var(--progress), #e0e7ff 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+.progress-target {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.progress-target div:first-child {
+  color: #f7cb6c;
+  font-weight: 500;
+}
+/* 进度条优化 */
+.diet-progress {
+  background: #f8faff;
+  border-radius: 8px;
+  padding: 1.2rem;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(74, 108, 247, 0.05);
+  height: 120px;
+  margin: 2rem 0;
+}
+.diet-progress .progress-bar {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  background: linear-gradient(180deg, #ffbc2b 0%, #f7e64a 100%);
+  border-radius: 12px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+.diet-progress .progress-text {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  font-size: 0.95em;
+  color: #ffffff;
+}
+
+
+.diet-progress .progress-text span:first-child {
+  color: #f7f7f7;
+  font-weight: 600;
+}
+/* 输入控件优化 */
+.diet-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+
+
+/* 历史记录优化 */
+.diet-history h4 {
+  color: #666;
+  font-size: 1rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.diet-history-item {
+  padding: 0.8rem 1.2rem;
+  margin: 0.5rem 0;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.diet-history-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+.diet-history-item:empty::after {
+  content: "暂无饮食记录";
+  color: #999;
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 1rem;
+}
+.meal-type {
+  font-weight: 500;
+  color: #2b8a3e;
+}
+
+.food-name {
+  color: #495057;
+}
+
+.calories {
+  font-weight: bold;
+  color: #ff6b6b;
+}
+.record-date {
+  color: #666;
+  font-size: 0.85em;
+}
+/* 新增食物识别样式 */
+.food-recognition {
+  background: linear-gradient(145deg, #ffffff 0%, #f8faff 100%);
+  border: 2px solid rgba(74, 108, 247, 0.1);
+  padding: 2rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+}
+
+.upload-section {
+  position: relative;
+  border: 2px dashed #dee2e6;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.btn-upload {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  cursor: pointer;
+  color: #2b8a3e;
+}
+
+.upload-input {
+  display: none;
+}
+
+.food-preview {
+  max-width: 300px;
+  max-height: 200px;
+  border-radius: 8px;
+  margin-top: 1rem;
+  object-fit: cover;
+}
+
+.calorie-info {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff8e1;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ai-label {
+  color: #666;
+}
+
+.btn-apply {
+  background: #b5f8b7;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+
+
+/* ----------------------------AI对话样式------------------------- */
+.ai-chat-container {
+  resize: both;
+  min-height: 400px;
+  max-height: 80vh;
+  overflow: auto;
+}
+.ai-chat-container .chat-message.ai {
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+/* 修复消息内容显示 */
+.ai-response-content {
+  color: #2d3439; /* 确保文字颜色可见 */
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* 添加文本段落间距 */
+.ai-response-content {
+  line-height: 1.7;
+  font-size: 15px;
+  color: #2d3439;
+}
+
+/* 聊天历史区域调整 */
+.chat-history {
+  height: 60vh; /* 改用视口单位 */
+  min-height: 300px; /* 最小高度 */
+  max-height: 800px; /* 最大高度 */
+  resize: vertical; /* 允许垂直调整 */
+  overflow-y: auto;
+  background: white; /* 去除蒙层效果 */
+  border: 1px solid #ddd; /* 更明显的边框 */
+}
+
+.chat-message {
+  margin: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  max-width: 80%;
+}
+
+.chat-message.user {
+  background: #e3f2fd;
+  margin-left: auto;
+}
+
+/* 调整消息背景色 */
+.chat-message.ai {
+  background: white; /* 改为纯白背景 */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* 添加阴影 */
+}
+
+.input-group {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1.8rem;
+}
+.AI-input-group {
+  display: flex;
+  gap: 10px;
+}
+.form-label {
+  font-size: 1.1rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.form-label::before {
+  font-size: 1.3em;
+}
+
+#aiInput {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  min-height: 50px;
+}
+
+.btn-send {
+  padding: 12px 25px;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-send:hover {
+  background: #357abd;
+}
+
+
+/* 新增医疗专用样式 */
+.med-reminder {
+  background: #fff3e0;
+  border-left: 3px solid #ff6b6b;
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.btn-plan {
+  background: #4a90e2;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+}
+
+.health-plan-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.health-plan-table td {
+  padding: 10px;
+  border: 1px solid #eee;
+}
+
+.clinical-guideline {
+  border: 2px solid #4a90e2;
+  border-radius: 8px;
+  padding: 15px;
+  position: relative;
+}
+
+.clinical-guideline::before {
+  content: "循证指南";
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  background: white;
+  padding: 0 5px;
+  color: #4a90e2;
+  font-size: 0.8em;
+}
+/* 添加模式切换样式 */
+.mode-switcher {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.mode-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #e3f2fd;
+  color: #2d3439;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.mode-btn.active {
+  background: #4a90e2;
+  color: white;
+}
+
+/* 增强计划模式表格样式 */
+.health-plan-table {
+  width: 100%;
+  margin: 15px 0;
+  border-collapse: collapse;
+}
+
+.health-plan-table td {
+  padding: 12px;
+  border: 1px solid #eee;
+  background: #f8f9fa;
+}
+
+.plan-metric {
+  color: #4a90e2;
+  font-weight: 500;
+}
+/* ================= 健康计划模块 v2.0 ================= */
+.plan-block {
+  position: relative;
+}
+/* 修复替换残留问题 */
+.plan-block:empty {
+  display: none;
+}
+
+.plan-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #4a90e2;
+}
+/* 新增外层容器样式 */
+.ai-wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+/* 计划展示容器 */
+.plan-display-container {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  animation: fadeIn 0.5s ease;
+  margin-top: 20px;
+}
+.plan-error {
+  background: #fff0f0;
+  border-left: 4px solid #ff6b6b;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  color: #c92a2a;
+}
+.plan-error::before {
+  content: "⚠";
+  font-size: 1.5em;
+  margin-right: 15px;
+}
+
+/* 优化说明区块 */
+.plan-notice {
+  background: #f8f9ff;
+  border: 1px solid #4a90e2;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 30px;
+  position: relative;
+}
+
+.plan-notice h4 {
+  color: #2c3e50;
+  margin: 0 0 15px 0;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+}
+
+.plan-notice h4::before {
+  content: "💡";
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+.plan-notice p {
+  line-height: 1.8;
+  color: #4a5568;
+  font-size: 14px;
+  margin: 0;
+}
+
+.btn-view-plan {
+  background: #4a90e2;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.btn-view-plan:hover {
+  background: #357abd;
+  transform: translateY(-2px);
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* 新增加载状态 */
+.plan-loading {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #7f8c8d;
+}
+/* ---------- 分栏布局 ---------- */
+.plan-columns {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.plan-day-header {
+  font-size: 1.3em;
+  color: #2c3e50;
+  padding: 15px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+  border-radius: 10px;
+  margin: 25px 0;
+  display: flex;
+  align-items: center;
+}
+
+.plan-day-header::before {
+  content: "📅";
+  margin-right: 12px;
+  font-size: 1.2em;
+}
+/* 新增目录导航样式 */
+.plan-nav {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.plan-nav-item {
+  padding: 8px 15px;
+  border-radius: 20px;
+  background: #e3f2fd;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.plan-nav-item:hover {
+  background: #4a90e2;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ---------- 饮食区块 ---------- */
+.diet-section {
+  background: #fff8f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.diet-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.meal-card {
+  padding: 20px;
+  border-radius: 10px;
+  line-height: 1.6;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.meal-card:hover {
+  transform: translateY(-3px);
+}
+
+.meal-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+}
+
+.meal-card.breakfast {
+  background: #e3f2fd;
+  border-left: 4px solid #4a90e2;
+}
+.meal-card.breakfast::after { background: #4a90e2; }
+
+.meal-card.lunch {
+  background: #e8f5e9;
+  border-left: 4px solid #2ecc71;
+}
+.meal-card.lunch::after { background: #2ecc71; }
+
+.meal-card.dinner {
+  background: #f3e5f5;
+  border-left: 4px solid #9b59b6;
+}
+.meal-card.dinner::after { background: #9b59b6; }
+/* 新增餐食说明样式 */
+.meal-item {
+  margin-bottom: 8px;
+}
+
+.meal-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.meal-desc {
+  font-size: 13px;
+  color: #666;
+  margin-top: 4px;
+  padding-left: 10px;
+  border-left: 2px solid #eee;
+}
+
+.meal-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #4a90e2;
+}
+.ai-chat-container .meal-info {
+  margin-top: 8px;
+}
+.meal-line {
+  display: flex;
+  align-items: baseline;
+  margin: 4px 0;
+}
+.meal-label {
+  display: inline-block;
+  width: 50px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+/* ---------- 运动监测区块 ---------- */
+.activity-section {
+  display: grid;
+  gap: 25px;
+}
+
+.exercise-card, .monitor-card {
+  padding: 25px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  line-height: 1.7;
+  position: relative;
+}
+
+.exercise-card {
+  border-top: 4px solid #ff6b6b;
+}
+
+.monitor-card {
+  border-top: 4px solid #4a90e2;
+}
+
+/* ---------- 响应式设计 ---------- */
+@media (max-width: 992px) {
+  .plan-columns {
+    gap: 20px;
+  }
+  
+  .meal-card {
+    min-height: 120px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .plan-columns {
+    grid-template-columns: 1fr;
+  }
+  
+  .diet-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));  /* 缩小最小宽度 */
+  }
+  
+  .plan-day-header {
+    font-size: 1.1em;
+    padding: 12px;
+  }
+}
+
+/* ---------- 辅助样式 ---------- */
+.plan-subtitle {
+  color: #2c3e50;
+  font-size: 1.1em;
+  margin: 20px 0 15px;
+  padding-left: 10px;
+  border-left: 3px solid #4a90e2;
+}
+
+.empty-cell {
+  color: #adb5bd;
+  font-style: italic;
+  position: relative;
+}
+
+.empty-cell::after {
+  content: "(需专业评估)";
+  font-size: 0.8em;
+  color: #ff6b6b;
+  margin-left: 5px;
+}
+
+.plan-warning {
+  background: #fff3e0;
+  border-left: 4px solid #ff6b6b;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.plan-warning::before {
+  content: "⚠";
+  margin-right: 12px;
+  font-size: 1.4em;
+}
+/* 新增计划说明卡片样式 */
+.plan-summary-card {
+  background: #f8f9ff;
+  border: 1px solid #4a90e2;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.plan-summary-card::before {
+  content: "📝 计划说明";
+  position: absolute;
+  top: -12px;
+  left: 20px;
+  background: white;
+  padding: 0 10px;
+  font-weight: bold;
+  color: #4a90e2;
+}
+
+.plan-summary-content {
+  line-height: 1.8;
+  color: #4a5568;
+  font-size: 14px;
+}
+
+
+/* 导出按钮组样式 */
+.export-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.btn-export-txt, .btn-export-pdf {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-export-txt {
+  background: #4CAF50;
+  color: white;
+}
+
+.btn-export-pdf {
+  background: #f44336;
+  color: white;
+}
+
+.btn-export-txt:hover {
+  background: #388E3C;
+}
+
+.btn-export-pdf:hover {
+  background: #D32F2F;
+}
+
+.export-buttons.hidden {
+  display: none;
+}
+
+
+/* 新增关节疼痛模块样式 */
+
+.feature-buttons .btn-arthrosis {
+  position: relative;
+  overflow: hidden;
+  background-size: 200% auto;
+  background-image: linear-gradient(
+    135deg,
+    #9b59b6 0%,
+    #8e44ad 51%,
+    #9b59b6 100%
+  );
+  transition: 0.5s;
+}
+
+.feature-buttons .btn-arthrosis:hover {
+  background-position: right center;
+  color: #000000;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+
+.arthrosis-module {
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.arthrosis-content {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.arthrosis-image {
+  position: sticky;
+  top: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.arthrosis-image img {
+  width: 100%;
+  height: 480px;
+  object-fit: contain;
+  background: #f8f9fa;
+}
+
+.arthrosis-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255,255,255,0.95);
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.arthrosis-form input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.arthrosis-form button {
+  padding: 10px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.arthrosis-form button:hover {
+  background: #2980b9;
+}
+
+.relief-results {
+  margin-top: 1rem;
+}
+
+.error {
+  color: #e74c3c;
+}
+/* 在关节疼痛模块样式中添加 */
+.image-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.9);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  color: #4a5568;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.input-hint {
+  color: #718096;
+  font-size: 0.95em;
+  margin-bottom: 1rem;
+  padding: 8px 12px;
+  background: #f8f9ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -0.5rem 0 1.2rem;
+  color: #666;
+}
+.smart-input {
+  margin: 0.6rem 0;
+  padding: 0.8rem 1.2rem;
+  width: 100%;
+}
+.hint-icon {
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+
+/* 修改输入框placeholder颜色 */
+.smart-input::placeholder {
+  color: #a0aec0;
+  font-style: italic;
+}
+/* 缓解方案容器 */
+.relief-methods-container {
+    background: #f8fbff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(74, 108, 247, 0.1);
+}
+
+/* 单个缓解方法 */
+.relief-method {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    margin: 0.5rem 0;
+    background: rgba(255,255,255,0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(74, 108, 247, 0.05);
+    transition: transform 0.2s ease;
+    border-left: 3px solid #4a90e2;
+}
+
+.relief-method:hover {
+    transform: translateX(8px);
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.1);
+}
+
+/* 方法序号 */
+.method-index {
+    width: 32px;
+    height: 32px;
+    background: #4a6cf7;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* 方法内容 */
+.method-content {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #374151;
+    padding-right: 1rem;
+}
+#reliefResults {
+  margin-top: 1.5rem;
+}
+/* 头部样式 */
+.relief-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+    padding: 1rem 0;
+}
+
+.method-icon {
+    font-size: 1.8em;
+    padding: 0;
+    background: none;
+    width: auto;
+    height: auto;
+}
+
+.medical-note {
+  padding: 1rem;
+  background: #fff3e0;
+  border-radius: 8px;
+  gap: 0.8rem;
+}
+/* 新增智能建议样式 */
+.ai-advice {
+  background: linear-gradient(135deg, #f8ffff 0%, #f0fcff 100%);
+  border: 1px solid #e3f8ff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(74,144,226,0.08);
+  position: relative;
+  overflow: hidden;
+}
+.ai-advice::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(74,144,226,0.03) 0%, transparent 100%);
+}
+
+.ai-advice h4 {
+  color: #2c3e50;
+  font-size: 1.2em;
+  margin: 0 0 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+.ai-advice h4::before {
+  content: '✨';
+  font-size: 1.4em;
+}
+.ai-content {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: #374151;
+  position: relative;
+  background: rgba(255,255,255,0.9);
+  padding: 1rem;
+  border-radius: 8px;
+  white-space: pre-line; /* 保留换行符 */
+  
+}
+
+/* 新增症状输入组 */
+.symptom-inputs {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin: 1.5rem 0;
+}
+
+.symptom-item {
+  padding: 0.8rem;
+  border: 1px solid #e0e7ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.symptom-item:hover {
+  background: #f0f4ff;
+  transform: translateY(-2px);
+}
+
+/* 新增时间线动画 */
+@keyframes fadeExpand {
+  0% { opacity: 0; max-height: 0; }
+  100% { opacity: 1; max-height: 500px; }
+}
+
+.relief-methods-container {
+  animation: fadeExpand 0.6s ease-out;
+}
+/* 新增症状输入样式 */
+.symptom-input {
+    margin: 1rem 0;
+}
+
+.symptom-input textarea {
+    width: 100%;
+    height: 80px;
+    padding: 12px;
+    border: 1px solid #e0e7ff;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 14px;
+}
+/* 新增阶段建议样式 */
+.stage-container {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin: 2rem 0;
+}
+
+.stage-advice {
+  background: #fff5f7;
+  border-radius: 8px;
+  padding: 1.5rem;
+  border-left: 4px solid #ff6b6b;
+}
+.stage-advice h4 {
+  color: #c92a2a;
+  margin: 0 0 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+/* 急性期建议样式增强 */
+.stage-advice[data-stage="acute"] {
+  background: linear-gradient(135deg, #fff0f2 0%, #ffe6e9 100%);
+  border-left: 4px solid #ff6b6b;
+  box-shadow: 0 3px 12px rgba(255,107,107,0.1);
+}
+
+.stage-advice[data-stage="acute"] h4 {
+  color: #c92a2a;
+  font-size: 1.1em;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(201,42,42,0.2);
+}
+.stage-advice[data-stage="chronic"] {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+  border-left: 4px solid #4a90e2;
+  box-shadow: 0 3px 12px rgba(74,144,226,0.1);
+}
+
+.stage-advice[data-stage="chronic"] h4 {
+  color: #1a5c9e;
+  font-size: 1.1em;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(26,92,158,0.2);
+}
+.stage-advice ul {
+  margin: 0.8rem 0;
+  padding-left: 1.2rem;
+}
+
+.stage-advice li {
+  padding: 0.5rem 0;
+  position: relative;
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+.stage-advice li::before {
+  content: '▶';
+  position: absolute;
+  left: -1.2rem;
+  color: rgba(74,144,226,0.8);
+  font-size: 0.8em;
+}
+/* 新增加载动画样式 */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #4a90e2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* AI生成样式 */
+.ai-generated {
+    border-left-color: #9b59b6;
+    background: rgba(155, 89, 182, 0.05);
+}
+
+.ai-generated .method-index {
+    background: #9b59b6;
+}

@@ -1,0 +1,244 @@
+{
+    "version": "1.0",
+    "scaleName": "焦虑自评量表（SAS）",
+    "instructions": "根据您最近一周的实际感受选择答案",
+    "reverseScoring": [5, 9, 13, 17, 19],
+    "questions": [
+      {
+        "id": 1,
+        "text": "我感到比平常容易紧张和着急",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 2,
+        "text": "我无缘无故地感到害怕",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 3,
+        "text": "我容易心里烦乱或感到惊恐",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 4,
+        "text": "我感到怕事",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 5,
+        "text": "我感到一切都很好，我也能够控制一切",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 6,
+        "text": "我手脚麻木",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 7,
+        "text": "我因头晕而感到烦恼",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 8,
+        "text": "我有晕厥发作或昏倒的感觉",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 9,
+        "text": "我感到呼吸急促",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 10,
+        "text": "我感到自己有益的心跳或心痛",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 11,
+        "text": "我因为胃痛或消化不良而感到烦恼",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 12,
+        "text": "我感到恶心或胃部不适",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 13,
+        "text": "我感到肌肉紧张或疼痛",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 14,
+        "text": "我因为头痛、颈痛或背痛而感到烦恼",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 15,
+        "text": "我感到容易疲乏",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 16,
+        "text": "我感到坐立不安，无法保持平静",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 17,
+        "text": "我感到自己有价值",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 18,
+        "text": "我为一些琐事而烦恼",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 19,
+        "text": "我感到别人理解我",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      },
+      {
+        "id": 20,
+        "text": "我感到快乐",
+        "options": [
+          {"score": 1, "label": "没有或很少时间"},
+          {"score": 2, "label": "小部分时间"},
+          {"score": 3, "label": "相当多时间"},
+          {"score": 4, "label": "绝大部分时间"}
+        ]
+      }
+    ],
+    "scoringRules": {
+      "standard": {
+        "cutoffs": [
+          {
+            "score": 50,
+            "range": "0-49分",
+            "label": "正常范围",
+            "advice": ["保持规律作息", "适量运动", "保持良好的社交关系"]
+          },
+          {
+            "score": 60,
+            "range": "50-59分",
+            "label": "轻度焦虑",
+            "advice": ["尝试放松训练", "进行有氧运动", "寻求心理咨询"]
+          },
+          {
+            "score": 70,
+            "range": "60-69分",
+            "label": "中度焦虑",
+            "advice": ["考虑专业心理治疗", "学习压力管理技巧", "增加休闲活动"]
+          },
+          {
+            "score": 80,
+            "range": "70-79分",
+            "label": "重度焦虑",
+            "advice": ["尽快寻求专业帮助", "避免过度工作", "保持健康的生活方式"]
+          },
+          {
+            "score": 100,
+            "range": "80分及以上",
+            "label": "极重度焦虑",
+            "advice": ["立即联系精神科医生", "考虑药物治疗", "建立紧急支持系统"]
+          }
+        ]
+      }
+    }
+  }

@@ -1,0 +1,85 @@
+{
+  "docs": [
+    {
+      "id": "DOC101",
+      "title": "中国青少年肥胖防治指南（2023版）",
+      "keywords": ["青少年", "BMI标准", "饮食干预", "运动处方"],
+      "file_path": "/data/medical_literature/青少年肥胖指南.pdf",
+      "version": "2023-08",
+      "publisher": "中华医学会儿科学分会"
+    },
+    {
+      "id": "DOC102",
+      "title": "糖尿病防治专家共识",
+      "keywords": ["血糖监测", "胰岛素使用", "并发症预防", "膳食管理"],
+      "file_path": "/data/medical_literature/糖尿病防治指南.pdf",
+      "version": "2024-01",
+      "publisher": "中华糖尿病杂志"
+    },
+    {
+      "id": "DOC103",
+      "title": "中国血脂管理指南（2023年）",
+      "keywords": ["血脂异常", "动脉粥样硬化", "他汀类药物", "心血管风险"],
+      "file_path": "/data/medical_literature/【用药助手】中国血脂管理指南（2023年）.pdf",
+      "version": "2023-11",
+      "publisher": "中华心血管病杂志"
+    },
+    {
+      "id": "DOC104",
+      "title": "2型糖尿病患者饮食建议指南（2024 DDG版）",
+      "keywords": ["糖尿病饮食", "碳水化合物计算", "血糖生成指数", "营养配比"],
+      "file_path": "/data/medical_literature/【用药助手-翻译】2024 DDG临床实践指南：2型糖尿病患者的饮食建议.pdf",
+      "version": "2024-03",
+      "publisher": "德国糖尿病协会"
+    },
+    {
+      "id": "DOC105",
+      "title": "成人肥胖食养指南（2024年版）",
+      "keywords": ["肥胖管理", "热量控制", "代谢综合征", "膳食结构"],
+      "file_path": "/data/medical_literature/【用药助手】成人肥胖食养指南（2024 年版）.pdf",
+      "version": "2024-02",
+      "publisher": "国家卫生健康委员会"
+    },
+    {
+      "id": "DOC106",
+      "title": "中国高血压防治指南（2024年修订版）",
+      "keywords": ["血压分级", "靶器官损害", "联合用药", "动态监测"],
+      "file_path": "/data/medical_literature/【用药助手】中国高血压防治指南(2024年修订版).pdf",
+      "version": "2024-01",
+      "publisher": "中华高血压杂志"
+    },
+    {
+      "id": "DOC107",
+      "title": "成人肥胖综合管理指南",
+      "keywords": ["体脂率", "代谢手术", "行为疗法", "心理干预"],
+      "file_path": "/data/medical_literature/成人肥胖指南.pdf",
+      "version": "2023-09",
+      "publisher": "中国营养学会"
+    },
+    {
+      "id": "DOC108",
+      "title": "高尿酸血症与痛风诊疗规范",
+      "keywords": ["尿酸代谢", "嘌呤限制", "急性发作处理", "尿酸结晶"],
+      "file_path": "/data/medical_literature/高尿酸血与通风.pdf",
+      "version": "2023-12",
+      "publisher": "中华风湿病学分会"
+    },
+    {
+      "id": "DOC109",
+      "title": "慢性肾脏病营养管理指南",
+      "keywords": ["蛋白质限制", "电解质平衡", "肾小球滤过率", "透析营养"],
+      "file_path": "/data/medical_literature/慢性肾性病指南.pdf",
+      "version": "2024-02",
+      "publisher": "中华肾脏病学会"
+    },
+    {
+      "id": "DOC110",
+      "title": "糖尿病居家管理手册",
+      "keywords": ["自我监测", "胰岛素注射", "低血糖处理", "足部护理"],
+      "file_path": "/data/medical_literature/糖尿病防治管理手册.pdf",
+      "version": "2023-10",
+      "publisher": "中国糖尿病联盟"
+    }
+
+  ]
+}

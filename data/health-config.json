@@ -1,0 +1,57 @@
+{
+  "pressure_dimensions": [
+    {
+      "id": "emotion",
+      "name": "情绪状态",
+      "weight": 0.3,
+      "threshold": 15,
+      "indicators": [
+        {"id": "anxiety", "text": "焦虑频率", "weight": 1.2},
+        {"id": "mood_swing", "text": "情绪波动", "weight": 0.8}
+      ],
+      "suggestions": [
+        {"minScore": 10, "maxScore": 20, "tips": ["尝试正念冥想", "记录情绪日记"]},
+        {"minScore": 21, "maxScore": 30, "tips": ["咨询专业心理咨询", "进行艺术疗愈"]}
+      ]
+    },
+    {
+      "id": "work",
+      "name": "工作负荷",
+      "weight": 0.25,
+      "threshold": 12,
+      "indicators": [
+        {"id": "overtime", "text": "加班频率", "weight": 1.5},
+        {"id": "concentration", "text": "专注难度", "weight": 0.9}
+      ],
+      "suggestions": [
+        {"minScore": 8, "maxScore": 15, "tips": ["使用番茄工作法", "规划优先级矩阵"]}
+      ]
+    }
+  ],
+  "pressure_questions": [
+    {
+      "text": "最近一周感到焦虑的频率",
+      "options": [
+        {"score":0, "text":"几乎没有"},
+        {"score":1, "text":"偶尔"},
+        {"score":2, "text":"经常"}
+      ]
+    },
+    {
+      "text": "工作压力感受程度",
+      "options": [
+        {"score":0, "text":"轻松应对"},
+        {"score":1, "text":"略有压力"},
+        {"score":2, "text":"压力很大"}
+      ]
+    },
+    {
+      "text": "睡眠质量满意度",
+      "options": [
+        {"score":0, "text":"睡眠良好"},
+        {"score":1, "text":"偶尔失眠"},
+        {"score":2, "text":"经常失眠"}
+      ]
+    }
+  ]
+}

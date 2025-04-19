@@ -1,0 +1,155 @@
+/* 基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+body {
+  background: #f0f4f8;
+  line-height: 1.6;
+  color: #2d3439;
+}
+
+/* 主标题栏样式 */
+.main-header {
+  position: relative;
+  padding: 2rem;
+  background:url('../images/header-bg.jpg') center/cover ;
+  min-height: 300px;
+  image-rendering: crisp-edges;
+}
+
+
+
+/* 网站LOGO样式 */
+.logo {
+  width: 200%;
+  max-width: 600px;
+  height: auto;
+  margin: 0 auto 0.5rem;
+  display: block;
+}
+
+/* 功能按钮容器布局 */
+/* 功能按钮容器 */
+.feature-buttons {
+  display: flex;
+  gap: 3rem; /* 优化间隙为更合理的值 */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* 新增边框样式 */
+  border-width: 2px;
+}
+/* 基础重置与变量定义 */
+:root {
+  /* 新增根字体尺寸 */
+  font-size: 14px;
+}
+
+/* 功能按钮容器 */
+.feature-buttons .btn {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  min-width: 180px;
+  flex: 1 1 auto;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  :root {
+    font-size: 12px;
+  }
+  
+  .feature-buttons .btn {
+    padding: 1.8rem 3rem;
+    font-size: 2rem;
+  }
+}
+
+/* 内容区域通用样式 */
+.content-container {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  html {
+      font-size: 14px;
+  }
+  
+  .content-container {
+      padding: 1rem;
+  }
+  
+  .btn {
+      width: 100%;
+      margin: 0.5rem 0;
+  }
+}
+
+/* 食谱卡片图片样式 */
+.recipe-image {
+  width: 100%;
+  max-height: 200px;
+  margin: 1rem 0;
+  border-radius: 8px;
+  
+  display: none; /* 默认隐藏图片 */
+}
+
+.recipe-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.recipe-image img:hover {
+  transform: scale(1.05);
+}
+
+.bmi-image {
+  width: 120px;
+  height: 120px;
+  margin-left: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+
+/* 增加按钮动态效果 */
+.btn-start, .btn-sample {
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-start::after, .btn-sample::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.btn-start:active::after, 
+.btn-sample:active::after {
+  width: 200px;
+  height: 200px;
+}
+
+
+/* 在.feature-buttons区块下新增 */

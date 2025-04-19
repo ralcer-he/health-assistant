@@ -1,0 +1,207 @@
+{
+  "diseases": [
+    {
+      "id": "D001",
+      "name": "流行性感冒",
+      "symptoms": {
+        "发热": {"weight": 0.85, "common": true},
+        "咳嗽": {"weight": 0.75, "common": true},
+        "喉咙痛": {"weight": 0.65, "common": true},
+        "肌肉酸痛": {"weight": 0.6, "common": false},
+        "头痛": {"weight": 0.55, "common": false},
+        "乏力": {"weight": 0.5, "common": false},
+        "鼻塞": {"weight": 0.4, "common": false},
+        "流涕": {"weight": 0.35, "common": false}
+      },
+      "related_symptoms": ["寒战", "食欲不振", "结膜充血"],
+      "confidence_threshold": 0.65,
+      "advice": {
+        "diagnosis": "可能为病毒性感冒",
+        "recommendation": "多休息，多喝水，补充维生素C。可以使用解热镇痛药物缓解症状。如症状持续超过一周或加重，请及时就医。"
+      }
+    },
+    {
+      "id": "D002",
+      "name": "过敏性鼻炎",
+      "symptoms": {
+        "鼻塞": {"weight": 0.85, "common": true},
+        "打喷嚏": {"weight": 0.8, "common": true},
+        "流涕": {"weight": 0.75, "common": true},
+        "眼睛发痒": {"weight": 0.65, "common": false},
+        "喉咙痒": {"weight": 0.6, "common": false},
+        "流泪": {"weight": 0.55, "common": false},
+        "鼻痒": {"weight": 0.5, "common": false}
+      },
+      "related_symptoms": ["头痛", "耳鸣", "嗅觉减退"],
+      "confidence_threshold": 0.75,
+      "advice": {
+        "diagnosis": "季节性过敏反应",
+        "recommendation": "避免接触过敏原，如花粉、尘螨等。可以使用抗组胺药物缓解症状，必要时使用鼻用皮质类固醇。如症状严重或持续不缓解，请及时就医。"
+      }
+    },
+    {
+      "id": "D003",
+      "name": "支气管炎",
+      "symptoms": {
+        "咳嗽": {"weight": 0.85, "common": true},
+        "咳痰": {"weight": 0.8, "common": true},
+        "喉咙痛": {"weight": 0.65, "common": true},
+        "发热": {"weight": 0.6, "common": false},
+        "胸闷": {"weight": 0.55, "common": false},
+        "喘息": {"weight": 0.5, "common": false},
+        "乏力": {"weight": 0.45, "common": false}
+      },
+      "related_symptoms": ["呼吸困难", "声音嘶哑", "胸痛"],
+      "confidence_threshold": 0.6,
+      "advice": {
+        "diagnosis": "可能为支气管炎症",
+        "recommendation": "多休息，多喝水。可以使用止咳祛痰药物。如症状持续或加重，特别是出现呼吸困难时，请及时就医。"
+      }
+    },
+    {
+      "id": "D004",
+      "name": "肺炎",
+      "symptoms": {
+        "发热": {"weight": 0.85, "common": true},
+        "咳嗽": {"weight": 0.8, "common": true},
+        "咳痰": {"weight": 0.75, "common": true},
+        "胸痛": {"weight": 0.7, "common": false},
+        "呼吸急促": {"weight": 0.65, "common": false},
+        "乏力": {"weight": 0.6, "common": false},
+        "寒战": {"weight": 0.55, "common": false},
+        "头痛": {"weight": 0.5, "common": false}
+      },
+      "related_symptoms": ["口唇发绀", "胸闷", "食欲不振"],
+      "confidence_threshold": 0.7,
+      "advice": {
+        "diagnosis": "可能为肺部感染",
+        "recommendation": "请尽快就医进行胸部X光检查。通常需要使用抗生素治疗，避免自行用药延误病情。"
+      }
+    },
+    {
+      "id": "D005",
+      "name": "哮喘",
+      "symptoms": {
+        "喘息": {"weight": 0.9, "common": true},
+        "咳嗽": {"weight": 0.8, "common": true},
+        "胸闷": {"weight": 0.75, "common": true},
+        "呼吸困难": {"weight": 0.7, "common": true},
+        "哮鸣音": {"weight": 0.65, "common": false},
+        "夜间症状加重": {"weight": 0.6, "common": false},
+        "运动后加重": {"weight": 0.55, "common": false}
+      },
+      "related_symptoms": ["过敏史", "家族史", "情绪变化诱发"],
+      "confidence_threshold": 0.7,
+      "advice": {
+        "diagnosis": "可能为支气管哮喘",
+        "recommendation": "避免已知的触发因素，如过敏原、冷空气等。可以使用快速缓解药物，但需在医生指导下使用。建议尽快就医进行肺功能检查。"
+      }
+    },
+    {
+      "id": "D006",
+      "name": "胃炎",
+      "symptoms": {
+        "上腹痛": {"weight": 0.85, "common": true},
+        "恶心": {"weight": 0.8, "common": true},
+        "呕吐": {"weight": 0.75, "common": true},
+        "食欲不振": {"weight": 0.7, "common": true},
+        "反酸": {"weight": 0.65, "common": false},
+        "嗳气": {"weight": 0.6, "common": false},
+        "体重减轻": {"weight": 0.55, "common": false},
+        "黑便": {"weight": 0.5, "common": false}
+      },
+      "related_symptoms": ["烧心", "腹胀", " belching"],
+      "confidence_threshold": 0.65,
+      "advice": {
+        "diagnosis": "可能为胃部炎症",
+        "recommendation": "避免辛辣、油腻食物，戒烟酒。可以使用抗酸药物缓解症状。如症状持续或出现黑便、体重减轻等情况，请及时就医。"
+      }
+    },
+    {
+      "id": "D007",
+      "name": "消化性溃疡",
+      "symptoms": {
+        "上腹痛": {"weight": 0.9, "common": true},
+        "夜间痛": {"weight": 0.85, "common": true},
+        "反酸": {"weight": 0.75, "common": true},
+        "嗳气": {"weight": 0.7, "common": true},
+        "恶心": {"weight": 0.65, "common": false},
+        "呕吐": {"weight": 0.6, "common": false},
+        "体重减轻": {"weight": 0.55, "common": false},
+        "黑便": {"weight": 0.5, "common": false}
+      },
+      "related_symptoms": ["周期性发作", "季节性变化", "家族史"],
+      "confidence_threshold": 0.7,
+      "advice": {
+        "diagnosis": "可能为消化性溃疡",
+        "recommendation": "避免辛辣、刺激性食物，戒烟酒。需要在医生指导下使用抑酸和保护胃黏膜的药物。如出现剧烈腹痛、黑便等症状，请立即就医。"
+      }
+    },
+    {
+      "id": "D008",
+      "name": "肠易激综合征",
+      "symptoms": {
+        "腹痛": {"weight": 0.85, "common": true},
+        "腹胀": {"weight": 0.8, "common": true},
+        "腹泻": {"weight": 0.75, "common": true},
+        "便秘": {"weight": 0.7, "common": true},
+        "黏液便": {"weight": 0.65, "common": false},
+        "排便习惯改变": {"weight": 0.6, "common": false},
+        "里急后重": {"weight": 0.55, "common": false},
+        "食欲不振": {"weight": 0.5, "common": false}
+      },
+      "related_symptoms": ["压力诱发", "饮食诱发", "情绪变化"],
+      "confidence_threshold": 0.6,
+      "advice": {
+        "diagnosis": "可能为肠易激综合征",
+        "recommendation": "建议调整饮食结构，避免刺激性食物。可以尝试规律作息和减压方法。如症状持续或加重，请及时就医。"
+      }
+    },
+    {
+      "id": "D009",
+      "name": "高血压",
+      "symptoms": {
+        "头痛": {"weight": 0.75, "common": true},
+        "头晕": {"weight": 0.7, "common": true},
+        "眼花": {"weight": 0.65, "common": true},
+        "耳鸣": {"weight": 0.6, "common": true},
+        "心悸": {"weight": 0.55, "common": false},
+        "鼻出血": {"weight": 0.5, "common": false},
+        "乏力": {"weight": 0.45, "common": false},
+        "四肢麻木": {"weight": 0.4, "common": false}
+      },
+      "related_symptoms": ["家族史", "压力大", "睡眠不好"],
+      "confidence_threshold": 0.6,
+      "advice": {
+        "diagnosis": "可能为高血压",
+        "recommendation": "建议立即测量血压。如确诊高血压，需在医生指导下规律服药，避免自行停药。同时注意低盐饮食，适当运动，避免情绪激动。"
+      }
+    },
+    {
+      "id": "D010",
+      "name": "糖尿病",
+      "symptoms": {
+        "多饮": {"weight": 0.8, "common": true},
+        "多食": {"weight": 0.75, "common": true},
+        "多尿": {"weight": 0.7, "common": true},
+        "体重减轻": {"weight": 0.65, "common": true},
+        "乏力": {"weight": 0.6, "common": false},
+        "视物模糊": {"weight": 0.55, "common": false},
+        "皮肤瘙痒": {"weight": 0.5, "common": false},
+        "伤口愈合慢": {"weight": 0.45, "common": false}
+      },
+      "related_symptoms": ["家族史", "肥胖", "多汗"],
+      "confidence_threshold": 0.65,
+      "advice": {
+        "diagnosis": "可能为糖尿病",
+        "recommendation": "建议立即检测血糖。如确诊糖尿病，需在医生指导下进行饮食控制、适量运动和药物治疗，定期监测血糖变化。"
+      }
+    }
+  ],
+  "symptom_categories": {
+    "呼吸道症状": ["发热", "咳嗽", "喉咙痛", "鼻塞", "流涕", "打喷嚏", "喘息", "呼吸困难", "胸闷", "哮鸣音"],
+    "消化道症状": ["上腹痛", "恶心", "呕吐", "食欲不振", "反酸", "嗳气", "腹痛", "腹胀", "腹泻", "便秘", "黏液便", "黑便"],
+    "全身性症状": ["头痛", "头晕", "乏力", "体重减轻", "发热", "寒战", "肌肉酸痛", "心悸", "四肢麻木"],
+    "其他症状": ["眼睛发痒", "流泪", "鼻痒", "口唇发绀", "声音嘶哑", "胸痛", "烧心", " 打嗝", "里急后重", "视物模糊", "皮肤瘙痒", "伤口愈合慢"]
+  }
+}
