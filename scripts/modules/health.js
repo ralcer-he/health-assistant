@@ -873,9 +873,11 @@ export class HealthModule {
 
     document.querySelector('.btn-diet-reset')?.addEventListener('click', () => {
       this.dietData.current = 0;
-      this.dietData.history = this.dietData.history.filter(record => !record.date.startsWith(today));
-      this.saveDietData();
-      this.renderHealthDashboard(this.currentBMI);
+      this.dietData.history = this.dietData.history.filter(record => 
+          !record.date.startsWith(new Date().toISOString().split('T')[0])
+      );
+      localStorage.setItem('dietHistory', JSON.stringify(this.dietData.history));
+      this.renderHealthDashboard(this.currentBMI); 
     });
   }
 
