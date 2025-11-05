@@ -8,7 +8,11 @@ const moduleMap = {
     disease: './modules/disease.js',
     ai: './modules/ai.js',
     // 新增关节疼痛模块映射
-    arthrosis: './modules/arthrosis.js'
+    arthrosis: './modules/arthrosis.js',
+    // 新增经期计算模块映射
+    period: './modules/period.js',
+    // 新增睡眠辅助模块映射
+    sleep: './modules/sleep.js'
 };
 
 async function loadModule(moduleName) {
@@ -20,13 +24,37 @@ async function loadModule(moduleName) {
         showLoading('#contentContainer');
 
         const module = await import(moduleMap[moduleName]);
-        currentModule = module.default;
+        // 有些模块可能使用默认导出，有些使用命名导出，需要兼容两种方式
+        const moduleExport = module.default || module[Object.keys(module)[0]];
         
-        // 确保模块加载逻辑正确传递参数
-        await currentModule.init({
-          container: '#contentContainer',  // 必须包含 container 参数
-          utils: { createElement }         // 其他原有参数
-        });
+        // 兼容多种模块导出方式：
+        // 1. 如果是函数（类），则实例化
+        // 2. 如果是对象，则直接使用
+        if (typeof moduleExport === 'function') {
+          // 对于导出类的模块
+          currentModule = new moduleExport();
+          
+          // 检查实例是否有init方法
+          if (typeof currentModule.init === 'function') {
+            // 对于有init方法的模块（如period.js），调用其init方法
+            await currentModule.init({
+              container: '#contentContainer',  // 必须包含 container 参数
+              utils: { createElement }         // 其他原有参数
+            });
+          } else {
+            // 对于没有init方法但在构造函数中初始化的模块（如health.js），直接继续
+            console.log(`模块 ${moduleName} 是类但没有init方法，使用构造函数初始化`);
+          }
+        } else {
+          // 对于直接导出对象实例的模块（如recipe.js）
+          currentModule = moduleExport;
+          
+          // 检查对象是否有init方法
+          if (typeof currentModule.init === 'function') {
+            // 调用对象的init方法
+            await currentModule.init();
+          }
+        }
 
     } catch (error) {
         console.error(`[${new Date().toISOString()}] 模块加载失败:`, error);
@@ -73,7 +101,9 @@ function initEventListeners() {
         { id: 'healthBtn', name: 'health' },
         { id: 'diseaseBtn', name: 'disease' },
         // 新增关节疼痛模块按钮配置
-        { id: 'arthrosis', name: 'arthrosis' }
+        { id: 'arthrosis', name: 'arthrosis' },
+        // 新增经期计算模块按钮配置
+        { id: 'periodBtn', name: 'period' }
     ];
 
     moduleButtons.forEach(({ id, name }) => {
@@ -90,6 +120,8 @@ function initEventListeners() {
         }
     });
     document.getElementById('aiChatBtn')?.addEventListener('click', () => loadModule('ai'));
+    document.getElementById('periodBtn')?.addEventListener('click', () => loadModule('period'));
+    document.getElementById('sleepBtn')?.addEventListener('click', () => loadModule('sleep'));
 }
 
 // 启动应用
