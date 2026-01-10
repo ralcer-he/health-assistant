@@ -46,13 +46,16 @@ async function loadModule(moduleName) {
             console.log(`模块 ${moduleName} 是类但没有init方法，使用构造函数初始化`);
           }
         } else {
-          // 对于直接导出对象实例的模块（如recipe.js）
+          // 对于直接导出对象实例的模块（如recipe.js、ai.js、arthrosis.js）
           currentModule = moduleExport;
           
           // 检查对象是否有init方法
           if (typeof currentModule.init === 'function') {
-            // 调用对象的init方法
-            await currentModule.init();
+            // 调用对象的init方法，并确保传递必要的参数
+            await currentModule.init({
+              container: '#contentContainer',  // 必须包含 container 参数
+              utils: { createElement }         // 其他原有参数
+            });
           }
         }
 
